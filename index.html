@@ -448,47 +448,46 @@
     border-top: 1px solid rgba(255,255,255,0.08);
     animation: fadeInUp 0.7s 0.5s ease both;
     justify-content: center;
+    align-items: flex-start;
   }
   .stat-item {
     position: relative;
     text-align: center;
-    /* Espacio superior para que las llamas amplíadas tengan sitio sin recortarse */
-    padding-top: 94px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 66px;
   }
   .stat-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 65px;
+    font-size: 46px;
     line-height: 1;
     letter-spacing: 1px;
-    /* Relleno verde agua claro y nítido */
-    color: #c8fff0;
-    /* Borde de neón amarillo brillante alrededor de cada letra */
-    -webkit-text-stroke: 1.5px #ffe14a;
+    /* Interior NEGRO */
+    color: #000000;
+    /* Marco luminoso amarillo */
+    -webkit-text-stroke: 1.2px #ffe14a;
     position: relative;
     display: inline-block;
     z-index: 3;
-    /* Glow amarillo nítido + sutil halo verde agua */
+    /* Glow amarillo sutil */
     text-shadow:
-      0 0 2px #fff7a8,
-      0 0 6px #ffd633,
-      0 0 12px rgba(255,214,51,0.85),
-      0 0 22px rgba(255,200,0,0.55),
-      0 0 4px rgba(200,255,240,0.6);
+      0 0 1px #fff7a8,
+      0 0 4px #ffd633,
+      0 0 8px rgba(255,214,51,0.5),
+      0 0 14px rgba(255,200,0,0.3);
   }
   .stat-label {
     font-size: 13px;
-    color: rgba(255,255,255,0.55);
+    color: #ffe14a;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-top: 10px;
     position: relative;
     z-index: 2;
-    text-shadow:
-      -1px -1px 0 rgba(0,0,0,0.9),
-       1px -1px 0 rgba(0,0,0,0.9),
-      -1px  1px 0 rgba(0,0,0,0.9),
-       1px  1px 0 rgba(0,0,0,0.9);
+    text-align: center;
+    width: 100%;
   }
 
   /* ============================================
@@ -496,22 +495,21 @@
      Se activa inmediatamente al cargar la página
      ============================================ */
   .stat-num.fire-effect {
-    color: #c8fff0;
-    -webkit-text-stroke: 1.5px #ffe14a;
+    color: #000000;
+    -webkit-text-stroke: 1.2px #ffe14a;
   }
 
-  /* Estado ACTIVO del fuego - clase añadida por JS al cargar */
+  /* Estado ACTIVO del fuego */
   .stat-num.fire-effect.fire-on {
-    color: #c8fff0;
-    -webkit-text-stroke: 1.5px #ffe14a;
+    color: #000000;
+    -webkit-text-stroke: 1.2px #ffe14a;
     text-shadow:
-      0 0 2px #fff7a8,
-      0 0 6px #ffd633,
-      0 0 12px rgba(255,214,51,0.95),
-      0 0 22px rgba(255,200,0,0.7),
-      0 -2px 14px rgba(57,224,102,0.55),
-      0 -8px 22px rgba(43,194,84,0.4);
-    animation: fireFlicker 2.5s ease-in-out infinite;
+      0 0 1px #fff7a8,
+      0 0 4px #ffd633,
+      0 0 8px rgba(255,214,51,0.55),
+      0 0 14px rgba(255,200,0,0.35),
+      0 -1px 8px rgba(57,224,102,0.35),
+      0 -4px 14px rgba(43,194,84,0.25);
   }
 
   /* Llamas ocultas por defecto */
@@ -534,16 +532,15 @@
 
   /* Compatibilidad con sistema antiguo fire-active */
   body.fire-active .stat-num.fire-effect {
-    color: #c8fff0;
-    -webkit-text-stroke: 1.5px #ffe14a;
+    color: #000000;
+    -webkit-text-stroke: 1.2px #ffe14a;
     text-shadow:
-      0 0 2px #fff7a8,
-      0 0 6px #ffd633,
-      0 0 12px rgba(255,214,51,0.95),
-      0 0 22px rgba(255,200,0,0.7),
-      0 -2px 14px rgba(57,224,102,0.55),
-      0 -8px 22px rgba(43,194,84,0.4);
-    animation: fireFlicker 2.5s ease-in-out infinite;
+      0 0 1px #fff7a8,
+      0 0 4px #ffd633,
+      0 0 8px rgba(255,214,51,0.55),
+      0 0 14px rgba(255,200,0,0.35),
+      0 -1px 8px rgba(57,224,102,0.35),
+      0 -4px 14px rgba(43,194,84,0.25);
   }
   body.fire-active .stat-flames { opacity: 1; }
 
@@ -586,30 +583,30 @@
     }
   }
 
-  /* Llamas reales detrás del número - AMPLIADAS Y ENVOLVENTES */
+  /* Llamas reales detrás del número - REDUCIDAS 30% */
   .stat-flames {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     /* Posicionadas para que su base solape con el texto */
     bottom: auto;
-    top: -8px;
-    width: 204px;
-    height: 170px;
+    top: -6px;
+    width: 143px;
+    height: 119px;
     pointer-events: none;
     z-index: 1;
     margin-bottom: 0;
     filter:
       blur(0.4px)
-      drop-shadow(0 0 5px #ffe14a)
-      drop-shadow(0 0 12px rgba(255,214,51,0.7));
+      drop-shadow(0 0 4px #ffe14a)
+      drop-shadow(0 0 8px rgba(255,214,51,0.6));
   }
   .flame {
     position: absolute;
     bottom: 0;
     left: 50%;
-    width: 37px;
-    height: 110px;
+    width: 26px;
+    height: 77px;
     background: radial-gradient(
       ellipse at center bottom,
       #ffffff 0%,
@@ -625,40 +622,40 @@
     animation: flameDance 1.4s ease-in-out infinite;
   }
   .flame:nth-child(1) {
-    margin-left: -77px;
+    margin-left: -54px;
     animation-delay: 0s;
     animation-duration: 1.3s;
-    width: 32px;
-    height: 94px;
+    width: 22px;
+    height: 66px;
   }
   .flame:nth-child(2) {
-    margin-left: -42px;
+    margin-left: -29px;
     animation-delay: 0.2s;
     animation-duration: 1.6s;
-    width: 39px;
-    height: 128px;
+    width: 27px;
+    height: 90px;
   }
   .flame:nth-child(3) {
-    margin-left: -19px;
+    margin-left: -13px;
     animation-delay: 0.4s;
     animation-duration: 1.5s;
-    width: 42px;
-    height: 149px;
+    width: 29px;
+    height: 104px;
     z-index: 2;
   }
   .flame:nth-child(4) {
-    margin-left: 7px;
+    margin-left: 5px;
     animation-delay: 0.1s;
     animation-duration: 1.7s;
-    width: 36px;
-    height: 119px;
+    width: 25px;
+    height: 83px;
   }
   .flame:nth-child(5) {
-    margin-left: 42px;
+    margin-left: 29px;
     animation-delay: 0.3s;
     animation-duration: 1.4s;
-    width: 32px;
-    height: 98px;
+    width: 22px;
+    height: 69px;
   }
 
   @keyframes flameDance {
@@ -687,20 +684,20 @@
   /* Chispas */
   .spark {
     position: absolute;
-    width: 4px;
-    height: 4px;
+    width: 3px;
+    height: 3px;
     background: #fff7a8;
     border-radius: 50%;
-    box-shadow: 0 0 6px #ffe14a, 0 0 12px #ffd633;
-    bottom: 76px;
+    box-shadow: 0 0 4px #ffe14a, 0 0 8px #ffd633;
+    bottom: 53px;
     left: 50%;
     opacity: 0;
     animation: sparkRise 2.5s ease-out infinite;
   }
-  .spark:nth-child(6) { margin-left: -47px; animation-delay: 0.3s; }
-  .spark:nth-child(7) { margin-left: -15px; animation-delay: 0.9s; }
-  .spark:nth-child(8) { margin-left: 20px; animation-delay: 1.5s; }
-  .spark:nth-child(9) { margin-left: 47px; animation-delay: 2.1s; }
+  .spark:nth-child(6) { margin-left: -33px; animation-delay: 0.3s; }
+  .spark:nth-child(7) { margin-left: -10px; animation-delay: 0.9s; }
+  .spark:nth-child(8) { margin-left: 14px; animation-delay: 1.5s; }
+  .spark:nth-child(9) { margin-left: 33px; animation-delay: 2.1s; }
 
   @keyframes sparkRise {
     0% {
@@ -712,27 +709,27 @@
     }
     100% {
       opacity: 0;
-      transform: translateY(-110px) translateX(var(--drift, 10px)) scale(0.3);
+      transform: translateY(-77px) translateX(var(--drift, 7px)) scale(0.3);
     }
   }
-  .spark:nth-child(6) { --drift: -10px; }
-  .spark:nth-child(7) { --drift: 5px; }
-  .spark:nth-child(8) { --drift: -4px; }
-  .spark:nth-child(9) { --drift: 8px; }
+  .spark:nth-child(6) { --drift: -7px; }
+  .spark:nth-child(7) { --drift: 4px; }
+  .spark:nth-child(8) { --drift: -3px; }
+  .spark:nth-child(9) { --drift: 6px; }
 
-  /* En móvil, llamas más pequeñas pero manteniendo el efecto envolvente */
+  /* En móvil, llamas más pequeñas pero manteniendo el efecto envolvente - REDUCIDAS 30% */
   @media (max-width: 768px) {
     .stat-flames {
-      width: 153px;
-      height: 128px;
-      top: -7px;
+      width: 107px;
+      height: 90px;
+      top: -5px;
     }
-    .flame:nth-child(1) { width: 24px; height: 68px; margin-left: -55px; }
-    .flame:nth-child(2) { width: 29px; height: 94px; margin-left: -31px; }
-    .flame:nth-child(3) { width: 32px; height: 110px; margin-left: -14px; }
-    .flame:nth-child(4) { width: 27px; height: 89px; margin-left: 5px; }
-    .flame:nth-child(5) { width: 24px; height: 72px; margin-left: 31px; }
-    .spark { bottom: 60px; }
+    .flame:nth-child(1) { width: 17px; height: 48px; margin-left: -39px; }
+    .flame:nth-child(2) { width: 20px; height: 66px; margin-left: -22px; }
+    .flame:nth-child(3) { width: 22px; height: 77px; margin-left: -10px; }
+    .flame:nth-child(4) { width: 19px; height: 62px; margin-left: 4px; }
+    .flame:nth-child(5) { width: 17px; height: 50px; margin-left: 22px; }
+    .spark { bottom: 42px; }
   }
 
   /* Decoración lado derecho hero */
@@ -786,6 +783,46 @@
     max-width: 540px;
   }
 
+  /* ── TÍTULOS GRANDES SIMÉTRICOS (ESTAS SON MIS CARTAS, MI MÉTODO, ¿LISTO PARA...?) ── */
+  .big-symmetric-title {
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: clamp(64px, 9vw, 120px) !important;
+    line-height: 0.95 !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    font-weight: 400 !important;
+  }
+
+  /* ── SECTION-TAG CON LÍNEAS VERDES A LOS LADOS (Servicios, Empieza ahora, Sobre mí) ── */
+  /* Mismo diseño que .meto-overtitle (Cómo trabajo) */
+  .servicios .section-tag,
+  .cta-final .section-tag,
+  .sobre-content .section-tag {
+    display: inline-block;
+    position: relative;
+    padding: 0 18px;
+  }
+  .servicios .section-tag::before,
+  .servicios .section-tag::after,
+  .cta-final .section-tag::before,
+  .cta-final .section-tag::after,
+  .sobre-content .section-tag::before,
+  .sobre-content .section-tag::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 32px;
+    height: 1px;
+    background: var(--verde);
+    opacity: 0.5;
+  }
+  .servicios .section-tag::before,
+  .cta-final .section-tag::before,
+  .sobre-content .section-tag::before { right: 100%; margin-right: -14px; }
+  .servicios .section-tag::after,
+  .cta-final .section-tag::after,
+  .sobre-content .section-tag::after  { left: 100%;  margin-left:  -14px; }
+
   /* ── SERVICIOS ── */
   .servicios { background: var(--negro); }
 
@@ -794,11 +831,20 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 48px;
+    gap: 16px;
     margin-bottom: 64px;
   }
 
   /* ── CARDS GRID (9 servicios) ── */
+  .servicios-desc {
+    text-align: justify;
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+    hyphens: none;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
 
   /* ── SOBRE MÍ ── */
   .sobre-mi {
@@ -1037,7 +1083,7 @@
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--verde);
-    margin-bottom: 14px;
+    margin-bottom: 28px;
     position: relative;
     padding: 0 18px;
   }
@@ -1766,8 +1812,9 @@
     .metodologia { padding: 80px 40px; }
     .testi-grid { grid-template-columns: repeat(2, 1fr); }
     .hero-stats { gap: 36px; }
-    .stat-num { font-size: 51px; }
+    .stat-num { font-size: 36px; }
     .section-title { font-size: clamp(36px, 5vw, 56px); }
+    .big-symmetric-title { font-size: clamp(56px, 7vw, 96px) !important; }
     .servicios-header { gap: 32px; }
     .hero-deco { right: -40px; opacity: 0.5; }
   }
@@ -1811,15 +1858,29 @@
 
     section { padding: 60px 20px; }
 
-    /* Stats en móvil: vertical, no horizontal */
+    /* Stats en móvil: HORIZONTAL (3 en línea), no vertical */
     .hero-stats {
-      flex-direction: column;
-      gap: 36px;
-      margin-top: 70px;
-      padding-top: 48px;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 50px;
+      padding-top: 36px;
+      flex-wrap: nowrap;
     }
-    .stat-num { font-size: 54px; }
-    .stat-item { padding-top: 76px; }
+    .stat-item {
+      flex: 1 1 0;
+      min-width: 0;
+      padding-top: 54px;
+    }
+    .stat-num { font-size: 38px; }
+    .stat-label {
+      font-size: 10px;
+      letter-spacing: 0.5px;
+      line-height: 1.3;
+      color: #ffe14a;
+      text-align: center;
+    }
 
 
     .sobre-mi { grid-template-columns: 1fr; gap: 40px; }
@@ -1840,6 +1901,7 @@
     .hero-deco { display: none; }
 
     .section-title { font-size: clamp(32px, 8vw, 48px); }
+    .big-symmetric-title { font-size: clamp(48px, 10vw, 72px) !important; }
     .section-tag { font-size: 11px; }
 
     /* Testimonios más legibles */
@@ -1860,18 +1922,30 @@
 
     section { padding: 50px 16px; }
     .section-title { font-size: clamp(28px, 8vw, 40px); }
+    .big-symmetric-title { font-size: clamp(42px, 11vw, 64px) !important; }
 
-    .stat-num { font-size: 48px; }
-    .stat-item { padding-top: 68px; }
-    .stat-flames {
-      width: 128px;
-      height: 110px;
+    .stat-num { font-size: 30px; }
+    .stat-item { padding-top: 46px; }
+    .hero-stats {
+      gap: 6px;
+      padding-top: 32px;
     }
-    .flame:nth-child(1) { width: 20px; height: 60px; margin-left: -47px; }
-    .flame:nth-child(2) { width: 26px; height: 81px; margin-left: -26px; }
-    .flame:nth-child(3) { width: 29px; height: 98px; margin-left: -12px; }
-    .flame:nth-child(4) { width: 24px; height: 77px; margin-left: 3px; }
-    .flame:nth-child(5) { width: 20px; height: 64px; margin-left: 26px; }
+    .stat-label {
+      font-size: 9px;
+      letter-spacing: 0.3px;
+      color: #ffe14a;
+      text-align: center;
+    }
+    .stat-flames {
+      width: 84px;
+      height: 70px;
+      top: -4px;
+    }
+    .flame:nth-child(1) { width: 14px; height: 42px; margin-left: -33px; }
+    .flame:nth-child(2) { width: 18px; height: 57px; margin-left: -18px; }
+    .flame:nth-child(3) { width: 20px; height: 68px; margin-left: -8px; }
+    .flame:nth-child(4) { width: 17px; height: 54px; margin-left: 3px; }
+    .flame:nth-child(5) { width: 14px; height: 45px; margin-left: 18px; }
 
     .cta-final { padding: 56px 16px; }
     footer { padding: 40px 16px 28px; }
@@ -1903,8 +1977,8 @@
       margin-top: 40px;
       padding-top: 32px;
     }
-    .stat-num { font-size: 41px; }
-    .stat-item { padding-top: 60px; }
+    .stat-num { font-size: 29px; }
+    .stat-item { padding-top: 42px; }
   }
 
   /* ─── PREFERS REDUCED MOTION (accesibilidad) ─── */
@@ -2134,8 +2208,8 @@
 <section class="servicios" id="servicios">
   <div class="servicios-header">
     <div class="section-tag">Servicios</div>
-    <p class="section-desc" style="text-align:center; max-width:640px; margin-left:auto; margin-right:auto;">Mi método está diseñado para integrarse en tu estilo de vida, adaptándose a tu trabajo, tus horarios y cualquier deporte o actividad que ya practiques, para que puedas avanzar sin necesidad de renunciar a tu día a día.</p>
-    <h2 class="section-title" style="margin-bottom:0; text-align:center;">ESTAS SON<br>MIS CARTAS</h2>
+    <p class="section-desc servicios-desc">Mis servicios están diseñados para integrarse en tu estilo de vida, adaptándose a tu trabajo, tus horarios y cualquier deporte o actividad que ya practiques, para que puedas avanzar sin necesidad de renunciar a tu día a día.</p>
+    <h2 class="section-title big-symmetric-title" style="margin-top:32px; margin-bottom:0; text-align:center;">ESTAS SON<br>MIS CARTAS</h2>
   </div>
 
   <!-- Indicador "Elige una opción" -->
@@ -2398,7 +2472,7 @@
 
   <div class="meto-header">
     <div class="meto-overtitle">Cómo trabajo</div>
-    <h2 class="meto-main-title">Mi método</h2>
+    <h2 class="meto-main-title big-symmetric-title">Mi método</h2>
     <p class="meto-subtitle">Recupérate de tu lesión lumbar y alcanza tus metas sin dolor.</p>
     <p class="meto-tagline">Este es el mapa:</p>
   </div>
@@ -2414,25 +2488,25 @@
       <div class="meto-num">2</div>
       <div class="meto-step">Paso 02</div>
       <h3>Evaluación física y planificación estratégica</h3>
-      <p>Realizo una evaluación completa de tu estado físico, composición corporal y capacidades para crear una programación estructurada, progresiva y orientada a resultados reales. Cada detalle tiene un propósito: avanzar de forma eficiente y segura.</p>
+      <p>Realizo una evaluación completa de tu estado físico, composición corporal y capacidades para crear una programación estructurada y progresiva. Cada detalle tiene un propósito: avanzar de forma eficiente y segura.</p>
     </div>
     <div class="meto-item">
       <div class="meto-num">3</div>
       <div class="meto-step">Paso 03</div>
-      <h3>Planificación individual</h3>
+      <h3>Prescripción y readaptación</h3>
       <p>Diseño tu entrenamiento y planificación nutricional, la unión de todos los factores harán que avances mucho más rápido. Todo el proceso se adapta a tus necesidades y evoluciona contigo para que puedas mejorar tu rendimiento y superar el dolor lumbar.</p>
     </div>
     <div class="meto-item">
       <div class="meto-num">4</div>
       <div class="meto-step">Paso 04</div>
-      <h3>Seguimiento continuo y acompañamiento real</h3>
-      <p>No estarás solo durante el proceso. Tendrás contacto directo conmigo para resolver dudas, realizar ajustes y mantener la motivación. El seguimiento constante es clave para asegurar adherencia, progreso y confianza en cada etapa.</p>
+      <h3>Seguimiento continuo y acompañamiento</h3>
+      <p>No estarás solo durante el proceso. Tendrás contacto directo conmigo tanto en las sesiones presenciales como online para resolver dudas, realizar ajustes y mantener la motivación. El seguimiento constante es clave para asegurar adherencia, progreso y confianza en cada etapa.</p>
     </div>
     <div class="meto-item">
       <div class="meto-num">5</div>
       <div class="meto-step">Paso 05</div>
-      <h3>Resultados sostenibles y transformación real</h3>
-      <p>El objetivo no es solo que consigas una meta puntual, sino ayudarte a construir hábitos, mejorar tu salud y alcanzar tu mejor versión física y mental de forma sostenible en el tiempo y libre de dolor lumbar.</p>
+      <h3>Resultados sostenibles y libre de dolor lumbar</h3>
+      <p>El objetivo no es solo que consigas una meta puntual, sino ayudarte a construir hábitos, mejorar tu salud y alcanzar tu mejor versión física y mental de forma sostenible en el tiempo. El miedo al movimiento, por fin, habrá quedado atrás.</p>
     </div>
   </div>
 </section>
@@ -2440,8 +2514,8 @@
 <!-- CTA FINAL -->
 <section class="cta-final" id="contacto">
   <div class="section-tag" style="display:inline-block; margin-bottom:20px;">Empieza ahora</div>
-  <h2 class="section-title">¿LISTO PARA<br><span style="color:var(--verde)">TU MEJOR VERSIÓN?</span></h2>
-  <p class="section-desc">La primera consulta y entrevista para valorar tu caso es completamente gratis. Cuéntame tu objetivo y lo haremos posible.</p>
+  <h2 class="section-title big-symmetric-title">¿LISTO PARA<br><span style="color:var(--verde)">TU MEJOR VERSIÓN?</span></h2>
+  <p class="section-desc">La primera consulta y entrevista para valorar tu caso es completamente gratis.<br><br>Cuéntame tu objetivo y lo haremos posible.</p>
 
   <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:8px; position:relative; z-index:10;">
     <a href="https://form.jotform.com/252633186626360" target="_blank" class="btn-primary" style="font-size:16px; padding:18px 40px; position:relative; z-index:10;">
