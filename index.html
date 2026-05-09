@@ -1556,14 +1556,20 @@
   /* ============================================
      ── POKER CARDS WRAPPER & DECK ──
      ============================================ */
+  /* Container animates height; decks are stacked absolutely inside */
+  #decks-container {
+    will-change: height;
+  }
+
   .poker-deck-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     overflow: hidden;
-    max-height: 0;
     opacity: 0;
-    transition:
-      max-height 0.65s cubic-bezier(.4,0,.2,1),
-      opacity 0.45s ease;
-    position: relative;
+    pointer-events: none;
+    transition: opacity 0.45s ease;
     isolation: isolate;
   }
 
@@ -1584,10 +1590,9 @@
     filter: blur(32px);
   }
   .poker-deck-wrapper.open {
-    max-height: 5000px;
     opacity: 1;
     overflow: visible;
-    padding-bottom: 12px;
+    pointer-events: auto;
   }
   .poker-deck-wrapper.open::before {
     opacity: 1;
@@ -2593,6 +2598,9 @@
     </button>
   </div>
 
+  <!-- Contenedor de ambos decks -->
+  <div id="decks-container" style="position:relative; height:0; overflow:hidden; transition:height 0.55s cubic-bezier(.4,0,.2,1);">
+
   <!-- Deck PRESENCIAL -->
   <div class="poker-deck-wrapper" id="deck-presencial" role="tabpanel" aria-labelledby="btn-presencial">
     <div class="poker-deck">
@@ -2878,8 +2886,10 @@
     </div>
   </div>
 
+  </div><!-- /#decks-container -->
+
   <!-- Botones duplicados debajo de las cartas -->
-  <div class="servicio-toggle" id="toggle-bottom" style="display:none; margin-top:40px; margin-bottom:0;">
+  <div class="servicio-toggle" id="toggle-bottom" style="display:none; margin-top:24px; margin-bottom:0;">
     <button type="button" class="toggle-btn" id="btn-presencial-bottom">
       Servicio Presencial
     </button>
@@ -2889,7 +2899,7 @@
   </div>
 
   <!-- Botón scroll circular debajo del desplegable -->
-  <div id="scroll-btn-servicios" style="display:none; justify-content:center; margin-top:36px;">
+  <div id="scroll-btn-servicios" style="display:none; justify-content:center; margin-top:16px;">
     <button onclick="document.getElementById('metodologia').scrollIntoView({behavior:'smooth'})"
       aria-label="Ir a la siguiente sección"
       style="
@@ -3214,10 +3224,59 @@
       }
     }
 
+    /* ── Animación sin layout-jump ──
+       El #decks-container crece/decrece en altura.
+       Los decks son position:absolute dentro, no empujan nada.
+       Solo el contenedor afecta al flujo — y lo hace suavemente. */
+    const decksContainer = document.getElementById('decks-container');
+
+    function setContainerHeight(h, animate) {
+      if (!animate) {
+        decksContainer.style.transition = 'none';
+        decksContainer.style.height = h + 'px';
+        // Forzar reflow para que el siguiente cambio sea instantáneo
+        decksContainer.offsetHeight;
+        decksContainer.style.transition = '';
+      } else {
+        decksContainer.style.height = h + 'px';
+      }
+    }
+
+    function showDeck(deck, fast) {
+      // Medir altura real del deck (necesita ser visible temporalmente)
+      deck.style.visibility = 'hidden';
+      deck.style.opacity    = '0';
+      deck.style.overflow   = 'hidden';
+      deck.classList.add('open');
+      const h = deck.scrollHeight;
+      deck.classList.remove('open');
+      deck.style.visibility = '';
+      deck.style.opacity    = '';
+      deck.style.overflow   = '';
+
+      // Animar contenedor a esa altura
+      setContainerHeight(h, !fast);
+
+      // Mostrar deck con fade
+      requestAnimationFrame(() => {
+        deck.classList.add('open');
+      });
+    }
+
+    function hideDeck(deck, fast) {
+      deck.classList.remove('open');
+      if (fast) {
+        // Sin animar el contenedor — la altura ya la pondrá el nuevo deck
+      } else {
+        setContainerHeight(0, true);
+      }
+    }
+
     function closeAll() {
       if (pendingCleanup) { pendingCleanup(); pendingCleanup = null; }
-      deckPresencial.classList.remove('open');
-      deckOnline.classList.remove('open');
+      hideDeck(deckPresencial, false);
+      hideDeck(deckOnline, false);
+      setContainerHeight(0, true);
       resetBtns();
       syncBottomBtns(null);
       activeDeck = null;
@@ -3237,16 +3296,9 @@
       syncBottomBtns(which);
 
       function activate() {
-        if (deckOld.classList.contains('open')) {
-          // Quitar transición de max-height para que el cierre sea instantáneo
-          deckOld.style.transition = 'opacity 0.15s ease';
-          deckOld.classList.remove('open');
-          // Restaurar transición original tras el cierre
-          setTimeout(() => { deckOld.style.transition = ''; }, 200);
-        } else {
-          deckOld.classList.remove('open');
-        }
-        requestAnimationFrame(() => deck.classList.add('open'));
+        const hadOpen = deckOld.classList.contains('open');
+        hideDeck(deckOld, hadOpen);
+        showDeck(deck, hadOpen);
       }
 
       // Si ya había un deck abierto, activar directamente sin scroll
@@ -3308,20 +3360,17 @@
       activeDeck = which;
       syncBottomBtns(which);
 
-      // Cerrar el deck antiguo sin animación de altura
-      deckOld.style.transition = 'opacity 0.15s ease';
-      deckOld.classList.remove('open');
-      setTimeout(() => { deckOld.style.transition = ''; }, 200);
+      hideDeck(deckOld, true);
+      showDeck(deck, true);
 
-      // Abrir el nuevo deck
-      requestAnimationFrame(() => deck.classList.add('open'));
-
-      // Scroll inmediato a la carta 1 del nuevo deck (sin esperar scroll end)
+      // Scroll inmediato a la carta 1 del nuevo deck
       const navH = (document.querySelector('nav') || { offsetHeight: 72 }).offsetHeight;
       const carta1 = deck.querySelector('.poker-card');
       if (carta1) {
-        const top = carta1.getBoundingClientRect().top + window.scrollY - navH - 16;
-        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        setTimeout(() => {
+          const top = carta1.getBoundingClientRect().top + window.scrollY - navH - 16;
+          window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        }, 50);
       }
     }
 
