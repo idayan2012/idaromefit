@@ -3185,30 +3185,37 @@
       [btnOnline, btnOnlineBottom].forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
     }
 
+    /* ── durations ── */
+    const FADE_BTNS   = 180;   // ms fade-out botones inferiores
+    const COLLAPSE_MS = 480;   // ms colapso del contenedor de cartas
+
     function syncBottomBtns(which) {
       if (!which) {
         // cancelar aparición pendiente si aún no se mostró
         if (bottomBtnTimeout) { clearTimeout(bottomBtnTimeout); bottomBtnTimeout = null; }
-        // ocultar con fade-out
-        toggleBottom.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-        toggleBottom.style.opacity = '0';
-        toggleBottom.style.transform = 'translateY(10px)';
-        scrollBtnServicios.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-        scrollBtnServicios.style.opacity = '0';
-        scrollBtnServicios.style.transform = 'translateY(10px)';
+        // fade-out simultáneo de botonera + flecha
+        const t = `opacity ${FADE_BTNS}ms ease, transform ${FADE_BTNS}ms ease`;
+        toggleBottom.style.transition       = t;
+        scrollBtnServicios.style.transition = t;
+        toggleBottom.style.opacity          = '0';
+        toggleBottom.style.transform        = 'translateY(8px)';
+        scrollBtnServicios.style.opacity    = '0';
+        scrollBtnServicios.style.transform  = 'translateY(8px)';
         setTimeout(() => {
-          toggleBottom.style.display = 'none';
-          scrollBtnServicios.style.display = 'none';
-        }, 300);
+          toggleBottom.style.display          = 'none';
+          toggleBottom.style.transition       = 'none';
+          scrollBtnServicios.style.display    = 'none';
+          scrollBtnServicios.style.transition = 'none';
+        }, FADE_BTNS + 20);
       } else {
         // Preparar ambos elementos ocultos
-        toggleBottom.style.display = 'flex';
-        toggleBottom.style.opacity = '0';
-        toggleBottom.style.transform = 'translateY(10px)';
-        toggleBottom.style.transition = 'none';
-        scrollBtnServicios.style.display = 'flex';
-        scrollBtnServicios.style.opacity = '0';
-        scrollBtnServicios.style.transform = 'translateY(10px)';
+        toggleBottom.style.display          = 'flex';
+        toggleBottom.style.opacity          = '0';
+        toggleBottom.style.transform        = 'translateY(10px)';
+        toggleBottom.style.transition       = 'none';
+        scrollBtnServicios.style.display    = 'flex';
+        scrollBtnServicios.style.opacity    = '0';
+        scrollBtnServicios.style.transform  = 'translateY(10px)';
         scrollBtnServicios.style.transition = 'none';
         if (which === 'presencial') {
           btnPresencialBottom.classList.add('active');
@@ -3219,12 +3226,12 @@
         }
         bottomBtnTimeout = setTimeout(() => {
           bottomBtnTimeout = null;
-          toggleBottom.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-          toggleBottom.style.opacity = '1';
-          toggleBottom.style.transform = 'translateY(0)';
+          toggleBottom.style.transition       = 'opacity 0.4s ease, transform 0.4s ease';
+          toggleBottom.style.opacity          = '1';
+          toggleBottom.style.transform        = 'translateY(0)';
           scrollBtnServicios.style.transition = 'opacity 0.4s ease 0.12s, transform 0.4s ease 0.12s';
-          scrollBtnServicios.style.opacity = '1';
-          scrollBtnServicios.style.transform = 'translateY(0)';
+          scrollBtnServicios.style.opacity    = '1';
+          scrollBtnServicios.style.transform  = 'translateY(0)';
         }, 650);
       }
     }
@@ -3235,20 +3242,19 @@
        Solo el contenedor afecta al flujo — y lo hace suavemente. */
     const decksContainer = document.getElementById('decks-container');
 
-    function setContainerHeight(h, animate) {
-      if (!animate) {
+    function setContainerHeight(h, instant) {
+      if (instant) {
         decksContainer.style.transition = 'none';
-        decksContainer.style.height = h + 'px';
-        // Forzar reflow para que el siguiente cambio sea instantáneo
-        decksContainer.offsetHeight;
+        decksContainer.style.height     = h + 'px';
+        decksContainer.offsetHeight;    // forzar reflow
         decksContainer.style.transition = '';
       } else {
-        decksContainer.style.height = h + 'px';
+        decksContainer.style.transition = `height ${COLLAPSE_MS}ms cubic-bezier(.4,0,.2,1)`;
+        decksContainer.style.height     = h + 'px';
       }
     }
 
     function showDeck(deck, fast) {
-      // Medir altura real del deck (necesita ser visible temporalmente)
       deck.style.visibility = 'hidden';
       deck.style.opacity    = '0';
       deck.style.overflow   = 'hidden';
@@ -3259,32 +3265,32 @@
       deck.style.opacity    = '';
       deck.style.overflow   = '';
 
-      // Animar contenedor a esa altura
-      setContainerHeight(h, !fast);
+      setContainerHeight(h, fast);
 
-      // Mostrar deck con fade
       requestAnimationFrame(() => {
         deck.classList.add('open');
       });
     }
 
-    function hideDeck(deck, fast) {
+    function hideDeck(deck) {
       deck.classList.remove('open');
-      if (fast) {
-        // Sin animar el contenedor — la altura ya la pondrá el nuevo deck
-      } else {
-        setContainerHeight(0, true);
-      }
     }
 
     function closeAll() {
       if (pendingCleanup) { pendingCleanup(); pendingCleanup = null; }
-      hideDeck(deckPresencial, false);
-      hideDeck(deckOnline, false);
-      setContainerHeight(0, true);
       resetBtns();
-      syncBottomBtns(null);
       activeDeck = null;
+
+      // 1) Fade-out de la botonera inferior y la flecha
+      syncBottomBtns(null);
+
+      // 2) Cuando termina el fade, quitar clases open de las cartas
+      //    y animar el colapso del contenedor — "mi método" sube suavemente
+      setTimeout(() => {
+        hideDeck(deckPresencial);
+        hideDeck(deckOnline);
+        setContainerHeight(0, false);   // false = con transición suave
+      }, FADE_BTNS);
     }
 
     function openDeck(which) {
@@ -3302,7 +3308,7 @@
 
       function activate() {
         const hadOpen = deckOld.classList.contains('open');
-        hideDeck(deckOld, hadOpen);
+        hideDeck(deckOld);
         showDeck(deck, hadOpen);
       }
 
@@ -3348,7 +3354,7 @@
       activeDeck = which;
       syncBottomBtns(which);
 
-      hideDeck(deckOld, true);
+      hideDeck(deckOld);
       showDeck(deck, true);
 
       // Scroll inmediato a la carta 1 del nuevo deck
