@@ -3007,7 +3007,15 @@
       syncBottomBtns(which);
 
       function activate() {
-        deckOld.classList.remove('open');
+        if (deckOld.classList.contains('open')) {
+          // Quitar transición de max-height para que el cierre sea instantáneo
+          deckOld.style.transition = 'opacity 0.15s ease';
+          deckOld.classList.remove('open');
+          // Restaurar transición original tras el cierre
+          setTimeout(() => { deckOld.style.transition = ''; }, 200);
+        } else {
+          deckOld.classList.remove('open');
+        }
         requestAnimationFrame(() => deck.classList.add('open'));
       }
 
