@@ -1929,9 +1929,9 @@
 
   /* Texto neon para carta 4 */
   .pc-text-neon {
-    color: #fffbe8;
+    color: #ffe033;
     font-weight: 600;
-    text-shadow: 0 0 8px rgba(255,224,51,0.35), 0 0 16px rgba(255,224,51,0.15);
+    text-shadow: 0 0 6px rgba(255,224,51,0.9), 0 0 14px rgba(255,224,51,0.5);
   }
 
   /* Texto sin justificación */
@@ -2189,6 +2189,13 @@
     .pc-title.gold-neon { text-shadow: 0 0 6px rgba(255,224,51,0.5), 0 0 12px rgba(255,224,51,0.2); letter-spacing: 1px; }
     .pc-text-neon { text-shadow: 0 0 6px rgba(255,224,51,0.25); }
     .pc-list.gold li { text-shadow: 0 0 6px rgba(255,224,51,0.4); }
+    /* carta 4 soporte: ítems 30% más grandes, amarillo neón */
+    .pc-list--soporte li {
+      font-size: 14.3px !important;
+      color: #ffe033 !important;
+      text-shadow: 0 0 6px rgba(255,224,51,0.95), 0 0 14px rgba(255,224,51,0.6) !important;
+      line-height: 1.4;
+    }
   }
 
   /* ─── MÓVIL PEQUEÑO ─── */
@@ -2284,8 +2291,15 @@
     .poker-card--green .pc-list li, .poker-card--green .pc-text { font-size: 13px; line-height: 1.4; }
     /* carta 4: glow mínimo en móvil pequeño */
     .pc-title.gold-neon { text-shadow: 0 0 4px rgba(255,224,51,0.45); letter-spacing: 0.5px; }
-    .pc-text-neon { text-shadow: none; color: #fff8d6; }
+    .pc-text-neon { text-shadow: none; color: #ffe033; }
     .pc-list.gold li { text-shadow: none; color: #ffe033; }
+    /* carta 4 soporte: ítems 30% más grandes, amarillo neón */
+    .pc-list--soporte li {
+      font-size: 13px !important;
+      color: #ffe033 !important;
+      text-shadow: 0 0 5px rgba(255,224,51,0.9), 0 0 12px rgba(255,224,51,0.5) !important;
+      line-height: 1.4;
+    }
   }
 
   /* ─── MÓVILES MUY PEQUEÑOS: poker cards y layout hasta 380px ─── */
@@ -2329,8 +2343,15 @@
     .poker-card--green .pc-list li, .poker-card--green .pc-text { font-size: 12.4px; line-height: 1.35; }
     /* carta 4: sin glow en pantallas muy pequeñas */
     .pc-title.gold-neon { text-shadow: none; color: #ffe033; letter-spacing: 0.3px; }
-    .pc-text-neon { text-shadow: none; color: #fff8d6; }
+    .pc-text-neon { text-shadow: none; color: #ffe033; }
     .pc-list.gold li { text-shadow: none; color: #ffe033; }
+    /* carta 4 soporte: ítems 30% más grandes, amarillo neón */
+    .pc-list--soporte li {
+      font-size: 12.35px !important;
+      color: #ffe033 !important;
+      text-shadow: none !important;
+      line-height: 1.35;
+    }
   }
 
   /* ─── PANTALLAS MUY GRANDES (4K) ─── */
@@ -2605,6 +2626,7 @@
   <!-- Contenedor de ambos decks -->
   <div id="decks-container" style="position:relative; height:0; overflow:hidden; transition:height 0.55s cubic-bezier(.4,0,.2,1);">
 
+
   <!-- Deck PRESENCIAL -->
   <div class="poker-deck-wrapper" id="deck-presencial" role="tabpanel" aria-labelledby="btn-presencial">
     <div class="poker-deck">
@@ -2740,9 +2762,13 @@
         <div class="pc-body">
           <h3 class="pc-title gold-neon">Soporte continuo</h3>
           <div class="pc-divider gold"></div>
-          <p class="pc-text pc-text-neon">Comunicación cercana y seguimiento constante para resolver dudas, mantener la motivación y acompañarte durante todo el proceso.</p>
+          <ul class="pc-list gold pc-list--soporte">
+            <li>Comunicación directa</li>
+            <li>Resolución de dudas</li>
+            <li>Motivación durante el proceso</li>
+          </ul>
           <div class="pc-badge">Bonus de alto valor</div>
-          <p class="pc-text pc-text-neon" style="font-size:12px;">La parte de mayor valor del servicio. Seré esa persona de confianza que te acompañará hasta que consigas tu meta y te plantees otras mayores. Bonus incluido en los servicios 1, 2 y 3.</p>
+          <p class="pc-text pc-text-neon" style="font-size:12px; margin-top:10px;">La parte de mayor valor del servicio. Seré esa persona de confianza que te acompañará hasta que consigas tu meta y te plantees otras mayores. Bonus incluido en los servicios 1, 2 y 3.</p>
         </div>
       </article>
 
@@ -2881,9 +2907,13 @@
         <div class="pc-body">
           <h3 class="pc-title gold-neon">Soporte continuo</h3>
           <div class="pc-divider gold"></div>
-          <p class="pc-text pc-text-neon">Comunicación cercana y seguimiento constante para resolver dudas, mantener la motivación y acompañarte durante todo el proceso.</p>
+          <ul class="pc-list gold pc-list--soporte">
+            <li>Comunicación directa</li>
+            <li>Resolución de dudas</li>
+            <li>Motivación durante el proceso</li>
+          </ul>
           <div class="pc-badge">Bonus de alto valor</div>
-          <p class="pc-text pc-text-neon" style="font-size:12px;">La parte de mayor valor del servicio. Seré esa persona de confianza que te acompañará hasta que consigas tu meta y te plantees otras mayores. Bonus incluido en los servicios 1, 2 y 3.</p>
+          <p class="pc-text pc-text-neon" style="font-size:12px; margin-top:10px;">La parte de mayor valor del servicio. Seré esa persona de confianza que te acompañará hasta que consigas tu meta y te plantees otras mayores. Bonus incluido en los servicios 1, 2 y 3.</p>
         </div>
       </article>
 
@@ -2891,6 +2921,35 @@
   </div>
 
   </div><!-- /#decks-container -->
+
+  <!-- Botón scroll duplicado (aparece cuando las cartas están desplegadas) -->
+  <div id="servicios-scroll-btn" style="
+    display:flex; justify-content:center;
+    margin-top:32px; margin-bottom:8px;
+    opacity:0;
+    pointer-events:none;
+    transition: opacity 0.35s ease;
+  ">
+    <button onclick="document.getElementById('metodologia').scrollIntoView({behavior:'smooth'})"
+      aria-label="Ir a Mi método"
+      style="
+        width:64px; height:64px;
+        border-radius:50%;
+        background:transparent;
+        border:2px solid #39e066;
+        box-shadow:0 0 10px rgba(57,224,102,0.7), 0 0 22px rgba(57,224,102,0.4), inset 0 0 10px rgba(57,224,102,0.08);
+        display:flex; align-items:center; justify-content:center;
+        cursor:pointer;
+        transition:transform 0.2s, box-shadow 0.2s;
+      "
+      onmouseover="this.style.transform='translateY(3px)'; this.style.boxShadow='0 0 16px rgba(57,224,102,0.9), 0 0 32px rgba(57,224,102,0.5), inset 0 0 14px rgba(57,224,102,0.12)';"
+      onmouseout="this.style.transform=''; this.style.boxShadow='0 0 10px rgba(57,224,102,0.7), 0 0 22px rgba(57,224,102,0.4), inset 0 0 10px rgba(57,224,102,0.08)';">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"
+        style="filter:drop-shadow(0 0 4px rgba(57,224,102,0.9)) drop-shadow(0 0 8px rgba(57,224,102,0.6));">
+        <path d="M13 5v16M6 15l7 7 7-7" stroke="#39e066" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
 
 </section>
 
@@ -3142,6 +3201,20 @@
     let pendingCleanup = null;
 
     const COLLAPSE_MS = 480;
+    const scrollBtn   = document.getElementById('servicios-scroll-btn');
+
+    function showScrollBtn() {
+      if (!scrollBtn) return;
+      scrollBtn.style.opacity       = '1';
+      scrollBtn.style.pointerEvents = 'auto';
+    }
+
+    function hideScrollBtn(cb) {
+      if (!scrollBtn) { if (cb) cb(); return; }
+      scrollBtn.style.opacity       = '0';
+      scrollBtn.style.pointerEvents = 'none';
+      if (cb) setTimeout(cb, 380); // esperar que termine el fade antes de recoger cartas
+    }
 
     function resetBtns() {
       [btnPresencial, btnOnline].forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
@@ -3181,9 +3254,12 @@
       if (pendingCleanup) { pendingCleanup(); pendingCleanup = null; }
       resetBtns();
       activeDeck = null;
-      hideDeck(deckPresencial);
-      hideDeck(deckOnline);
-      setContainerHeight(0, false);
+      // 1. Primero ocultar el botón, luego recoger las cartas
+      hideScrollBtn(() => {
+        hideDeck(deckPresencial);
+        hideDeck(deckOnline);
+        setContainerHeight(0, false);
+      });
     }
 
     function openDeck(which) {
@@ -3201,6 +3277,7 @@
       const hadOpen = deckOld.classList.contains('open');
       hideDeck(deckOld);
       showDeck(deck, hadOpen);
+      showScrollBtn();
 
       if (!hadOpen) {
         const navH = (document.querySelector('nav') || { offsetHeight: 72 }).offsetHeight;
