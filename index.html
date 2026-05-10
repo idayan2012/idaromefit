@@ -1821,29 +1821,31 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 18px 18px 0;
+    padding: 22px 22px 0;
     flex-shrink: 0;
   }
 
   /* Number corner */
   .pc-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 38px;
+    font-size: 57px;
     line-height: 1;
     letter-spacing: 1px;
+    overflow: visible;
   }
-  .pc-num.red  { color: #ff2244; text-shadow: 0 0 8px rgba(255,34,68,0.8), 0 0 18px rgba(255,34,68,0.4); }
-  .pc-num.green{ color: #39e066; text-shadow: 0 0 8px rgba(57,224,102,0.8), 0 0 18px rgba(57,224,102,0.4); }
-  .pc-num.gold { color: #ffe033; text-shadow: 0 0 8px rgba(255,224,51,0.8), 0 0 18px rgba(255,224,51,0.4); }
+  .pc-num.red  { color: #ff2244; text-shadow: 0 0 12px rgba(255,34,68,0.9), 0 0 28px rgba(255,34,68,0.5), 0 0 48px rgba(255,34,68,0.2); }
+  .pc-num.green{ color: #39e066; text-shadow: 0 0 12px rgba(57,224,102,0.9), 0 0 28px rgba(57,224,102,0.5), 0 0 48px rgba(57,224,102,0.2); }
+  .pc-num.gold { color: #ffe033; text-shadow: 0 0 12px rgba(255,224,51,0.9), 0 0 28px rgba(255,224,51,0.5), 0 0 48px rgba(255,224,51,0.2); }
 
   /* Small suit icon in corner */
   .pc-suit-corner {
-    width: 50px;
-    height: 50px;
+    width: 75px;
+    height: 75px;
     flex-shrink: 0;
     margin-top: 5px;
+    overflow: visible;
   }
-  .pc-suit-corner svg { width: 100%; height: 100%; display: block; }
+  .pc-suit-corner svg { width: 100%; height: 100%; display: block; overflow: visible; }
 
   /* ── CENTRAL SUIT (hidden – watermark removed) ── */
   .pc-suit-center {
@@ -1870,7 +1872,7 @@
     text-transform: uppercase;
     color: #fff;
     line-height: 1.15;
-    margin-bottom: 14px;
+    margin-bottom: 8px;
     text-align: left;
   }
 
@@ -1878,7 +1880,7 @@
     height: 2px;
     width: 48px;
     border-radius: 2px;
-    margin-bottom: 18px;
+    margin-bottom: 10px;
     flex-shrink: 0;
   }
   .pc-divider.red  { background: #ff2244; box-shadow: 0 0 8px rgba(255,34,68,0.7); }
@@ -1892,13 +1894,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 6px;
+    gap: 2px;
   }
   .pc-list li {
     position: relative;
-    padding: 6px 0 6px 22px;
-    font-size: 19.5px;
-    line-height: 1.35;
+    padding: 3px 0 3px 20px;
+    font-size: 15.5px;
+    line-height: 1.3;
     color: rgba(255,255,255,0.85);
     font-weight: 500;
     text-align: left;
@@ -1907,7 +1909,7 @@
     content: '';
     position: absolute;
     left: 0;
-    top: 14px;
+    top: 10px;
     width: 7px; height: 7px;
     border-radius: 50%;
   }
@@ -2062,17 +2064,17 @@
       min-height: unset;
       height: auto;
     }
-    .pc-num { font-size: 32px; }
-    .pc-title { font-size: 30px; letter-spacing: 1px; margin-bottom: 12px; }
-    .pc-list li, .pc-text { font-size: 13px; line-height: 1.45; }
-    .pc-list li { padding: 5px 0 5px 18px; }
-    .pc-list li::before { top: 11px; width: 6px; height: 6px; }
-    .pc-divider { margin-bottom: 14px; width: 40px; }
-    .pc-body { padding: 14px 14px 16px; }
+    .pc-num { font-size: 48px; }
+    .pc-title { font-size: 30px; letter-spacing: 1px; margin-bottom: 8px; }
+    .pc-list li, .pc-text { font-size: 12px; line-height: 1.3; }
+    .pc-list li { padding: 3px 0 3px 18px; }
+    .pc-list li::before { top: 8px; width: 6px; height: 6px; }
+    .pc-divider { margin-bottom: 8px; width: 40px; }
+    .pc-body { padding: 12px 14px 14px; }
     .pc-header { padding: 14px 14px 0; }
-    .pc-suit-corner { width: 45px; height: 45px; }
+    .pc-suit-corner { width: 68px; height: 68px; }
     .poker-card--red .pc-list li, .poker-card--red .pc-text,
-    .poker-card--green .pc-list li, .poker-card--green .pc-text { font-size: 17px; line-height: 1.45; }
+    .poker-card--green .pc-list li, .poker-card--green .pc-text { font-size: 13px; line-height: 1.3; }
   }
 
   /* ─── TABLET MEDIANA: sobre-mi a columna única ─── */
@@ -2194,7 +2196,7 @@
       min-height: unset;
       height: 100%;
     }
-    .pc-num { font-size: 22px; }
+    .pc-num { font-size: 33px; }
     .pc-title {
       font-size: 19.5px;
       letter-spacing: 0.3px;
@@ -2212,7 +2214,7 @@
     .pc-divider { margin-bottom: 8px; width: 28px; height: 1.5px; }
     .pc-body { padding: 9px 10px 11px; }
     .pc-header { padding: 9px 10px 0; }
-    .pc-suit-corner { width: 32px; height: 32px; margin-top: 2px; }
+    .pc-suit-corner { width: 48px; height: 48px; margin-top: 2px; }
     .pc-badge { font-size: 8.5px; padding: 4px 9px; letter-spacing: 1px; }
     .servicio-toggle { gap: 10px; margin: 16px 0 28px; }
     .elige-opcion { margin-top: 32px; font-size: 17px; letter-spacing: 2.5px; }
@@ -2303,7 +2305,7 @@
       min-height: unset;
       height: 100%;
     }
-    .pc-num { font-size: 20px; }
+    .pc-num { font-size: 30px; }
     .pc-title {
       font-size: 18px;
       letter-spacing: 0.2px;
@@ -2322,7 +2324,7 @@
     .pc-divider { margin-bottom: 7px; width: 24px; height: 1.5px; }
     .pc-body { padding: 8px 8px 10px; }
     .pc-header { padding: 8px 8px 0; }
-    .pc-suit-corner { width: 28px; height: 28px; margin-top: 2px; }
+    .pc-suit-corner { width: 42px; height: 42px; margin-top: 2px; }
     .pc-badge { font-size: 8px; padding: 4px 8px; letter-spacing: 1px; }
     .servicio-toggle { gap: 8px; margin: 14px 0 24px; }
     .elige-opcion { margin-top: 28px; font-size: 15px; letter-spacing: 2px; }
@@ -2357,7 +2359,7 @@
       min-height: unset;
       height: 100%;
     }
-    .pc-num { font-size: 18px; }
+    .pc-num { font-size: 27px; }
     .pc-title {
       font-size: 16.5px;
       letter-spacing: 0;
@@ -2376,7 +2378,7 @@
     .pc-divider { margin-bottom: 6px; width: 20px; height: 1px; }
     .pc-body { padding: 6px 7px 8px; }
     .pc-header { padding: 7px 7px 0; }
-    .pc-suit-corner { width: 24px; height: 24px; margin-top: 1px; }
+    .pc-suit-corner { width: 36px; height: 36px; margin-top: 1px; }
     .pc-badge { font-size: 7.5px; padding: 3px 7px; letter-spacing: 0.8px; }
     .servicio-toggle { gap: 6px; margin: 12px 0 20px; }
     .elige-opcion { margin-top: 24px; font-size: 13.5px; letter-spacing: 1.5px; }
@@ -2431,7 +2433,7 @@
       /* Reducir la perspectiva del flip para que no sobresalga del viewport */
       perspective: 600px;
     }
-    .pc-num { font-size: 18px; }
+    .pc-num { font-size: 27px; }
     .pc-title {
       font-size: 14px;
       letter-spacing: 0.1px;
@@ -2450,7 +2452,7 @@
     .pc-divider { margin-bottom: 6px; width: 20px; height: 1px; }
     .pc-body { padding: 6px 7px 8px; }
     .pc-header { padding: 7px 7px 0; }
-    .pc-suit-corner { width: 24px; height: 24px; margin-top: 1px; }
+    .pc-suit-corner { width: 36px; height: 36px; margin-top: 1px; }
     .pc-badge { font-size: 7px; padding: 3px 6px; letter-spacing: 0.8px; }
     .servicio-toggle { gap: 8px; margin: 10px 0 18px; }
     .elige-opcion { margin-top: 20px; font-size: 14px; letter-spacing: 2px; }
@@ -2734,7 +2736,7 @@
         <div class="pc-header">
           <div class="pc-num red">01</div>
           <div class="pc-suit-corner">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="-15 -15 130 130" xmlns="http://www.w3.org/2000/svg">
               <path d="M50 85 C50 85 10 60 10 35 C10 20 20 10 35 10 C42 10 48 14 50 20 C52 14 58 10 65 10 C80 10 90 20 90 35 C90 60 50 85 50 85Z" fill="none" stroke="#ff2244" stroke-width="7" stroke-linejoin="round" style="filter:drop-shadow(0 0 3px #ff2244) drop-shadow(0 0 7px rgba(255,34,68,0.9))"/>
             </svg>
           </div>
@@ -2767,7 +2769,7 @@
         <div class="pc-header">
           <div class="pc-num green">02</div>
           <div class="pc-suit-corner">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="-15 -15 130 130" xmlns="http://www.w3.org/2000/svg">
               <!-- circulo superior -->
               <circle cx="50" cy="34" r="17" fill="none" stroke="#39e066" stroke-width="6" style="filter:drop-shadow(0 0 4px #39e066) drop-shadow(0 0 8px rgba(57,224,102,0.8))"/>
               <!-- circulo izquierdo -->
@@ -2804,7 +2806,7 @@
         <div class="pc-header">
           <div class="pc-num red">03</div>
           <div class="pc-suit-corner">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="-15 -15 130 130" xmlns="http://www.w3.org/2000/svg">
               <path d="M50 8
                        C50 8, 12 36, 12 58
                        C12 74, 24 82, 37 78
@@ -2845,7 +2847,7 @@
         <div class="pc-header">
           <div class="pc-num gold">04</div>
           <div class="pc-suit-corner">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="-15 -15 130 130" xmlns="http://www.w3.org/2000/svg">
               <polygon points="50,5 61,35 95,35 68,57 79,91 50,70 21,91 32,57 5,35 39,35" fill="none" stroke="#ffe033" stroke-width="7" stroke-linejoin="round" style="filter:drop-shadow(0 0 3px #ffe033) drop-shadow(0 0 7px rgba(255,224,51,0.9))"/>
             </svg>
           </div>
@@ -2880,7 +2882,7 @@
         <div class="pc-header">
           <div class="pc-num red">01</div>
           <div class="pc-suit-corner">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="-15 -15 130 130" xmlns="http://www.w3.org/2000/svg">
               <path d="M50 85 C50 85 10 60 10 35 C10 20 20 10 35 10 C42 10 48 14 50 20 C52 14 58 10 65 10 C80 10 90 20 90 35 C90 60 50 85 50 85Z" fill="none" stroke="#ff2244" stroke-width="7" stroke-linejoin="round" style="filter:drop-shadow(0 0 3px #ff2244) drop-shadow(0 0 7px rgba(255,34,68,0.9))"/>
             </svg>
           </div>
@@ -2912,7 +2914,7 @@
         <div class="pc-header">
           <div class="pc-num green">02</div>
           <div class="pc-suit-corner">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="-15 -15 130 130" xmlns="http://www.w3.org/2000/svg">
               <!-- circulo superior -->
               <circle cx="50" cy="34" r="17" fill="none" stroke="#39e066" stroke-width="6" style="filter:drop-shadow(0 0 4px #39e066) drop-shadow(0 0 8px rgba(57,224,102,0.8))"/>
               <!-- circulo izquierdo -->
@@ -2949,7 +2951,7 @@
         <div class="pc-header">
           <div class="pc-num red">03</div>
           <div class="pc-suit-corner">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="-15 -15 130 130" xmlns="http://www.w3.org/2000/svg">
               <path d="M50 8
                        C50 8, 12 36, 12 58
                        C12 74, 24 82, 37 78
@@ -2990,7 +2992,7 @@
         <div class="pc-header">
           <div class="pc-num gold">04</div>
           <div class="pc-suit-corner">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="-15 -15 130 130" xmlns="http://www.w3.org/2000/svg">
               <polygon points="50,5 61,35 95,35 68,57 79,91 50,70 21,91 32,57 5,35 39,35" fill="none" stroke="#ffe033" stroke-width="7" stroke-linejoin="round" style="filter:drop-shadow(0 0 3px #ffe033) drop-shadow(0 0 7px rgba(255,224,51,0.9))"/>
             </svg>
           </div>
@@ -3033,12 +3035,14 @@
         display:flex; align-items:center; justify-content:center;
         cursor:pointer;
         transition:transform 0.2s, box-shadow 0.2s;
+        will-change:transform;
+        transform:translateZ(0);
       "
       onmouseover="this.style.transform='translateY(3px)'; this.style.boxShadow='0 0 16px rgba(57,224,102,0.9), 0 0 32px rgba(57,224,102,0.5), inset 0 0 14px rgba(57,224,102,0.12)';"
       onmouseout="this.style.transform=''; this.style.boxShadow='0 0 10px rgba(57,224,102,0.7), 0 0 22px rgba(57,224,102,0.4), inset 0 0 10px rgba(57,224,102,0.08)';">
-      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"
-        style="filter:drop-shadow(0 0 4px rgba(57,224,102,0.9)) drop-shadow(0 0 8px rgba(57,224,102,0.6));">
-        <path d="M13 5v16M6 15l7 7 7-7" stroke="#39e066" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"
+        style="width:26px; height:26px; display:block; shape-rendering:geometricPrecision; filter:drop-shadow(0 0 4px rgba(57,224,102,0.9)) drop-shadow(0 0 8px rgba(57,224,102,0.6));">
+        <path d="M13 5v16M6 15l7 7 7-7" stroke="#39e066" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
       </svg>
     </button>
   </div>
@@ -3101,12 +3105,14 @@
         display:flex; align-items:center; justify-content:center;
         cursor:pointer;
         transition:transform 0.2s, box-shadow 0.2s;
+        will-change:transform;
+        transform:translateZ(0);
       "
       onmouseover="this.style.transform='translateY(3px)'; this.style.boxShadow='0 0 16px rgba(57,224,102,0.9), 0 0 32px rgba(57,224,102,0.5), inset 0 0 14px rgba(57,224,102,0.12)';"
       onmouseout="this.style.transform=''; this.style.boxShadow='0 0 10px rgba(57,224,102,0.7), 0 0 22px rgba(57,224,102,0.4), inset 0 0 10px rgba(57,224,102,0.08)';">
-      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"
-        style="filter:drop-shadow(0 0 4px rgba(57,224,102,0.9)) drop-shadow(0 0 8px rgba(57,224,102,0.6));">
-        <path d="M13 5v16M6 15l7 7 7-7" stroke="#39e066" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"
+        style="width:26px; height:26px; display:block; shape-rendering:geometricPrecision; filter:drop-shadow(0 0 4px rgba(57,224,102,0.9)) drop-shadow(0 0 8px rgba(57,224,102,0.6));">
+        <path d="M13 5v16M6 15l7 7 7-7" stroke="#39e066" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
       </svg>
     </button>
   </div>
