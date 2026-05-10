@@ -158,13 +158,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
     width: 44px;
     height: 44px;
     cursor: pointer;
     background: transparent;
     border: none;
-    padding: 4px;
+    padding: 0;
     border-radius: 4px;
     transition: background 0.2s;
     -webkit-tap-highlight-color: transparent;
@@ -176,19 +176,21 @@
     display: block;
     width: 24px;
     height: 2px;
-    background: var(--blanco);
+    background: #FFE600;
     border-radius: 2px;
+    box-shadow: 0 0 6px #FFE600, 0 0 12px rgba(255,230,0,0.5);
     transition: all 0.3s ease;
+    flex-shrink: 0;
   }
   .hamburger.open span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+    transform: translateY(8px) rotate(45deg);
   }
   .hamburger.open span:nth-child(2) {
     opacity: 0;
     transform: scaleX(0);
   }
   .hamburger.open span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+    transform: translateY(-8px) rotate(-45deg);
   }
 
   /* ── MOBILE MENU OVERLAY ── */
@@ -808,9 +810,14 @@
   .servicios .section-tag,
   .cta-final .section-tag,
   .sobre-content .section-tag {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    padding: 0 18px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
   }
   .servicios .section-tag::before,
   .servicios .section-tag::after,
@@ -819,22 +826,24 @@
   .sobre-content .section-tag::before,
   .sobre-content .section-tag::after {
     content: '';
-    position: absolute;
-    top: 50%;
+    display: block;
     width: 32px;
     height: 1px;
     background: var(--verde);
     opacity: 0.5;
+    flex-shrink: 0;
+    position: static;
+    top: auto;
   }
   .servicios .section-tag::before,
   .cta-final .section-tag::before,
-  .sobre-content .section-tag::before { right: 100%; margin-right: -14px; }
+  .sobre-content .section-tag::before { margin-right: 12px; }
   .servicios .section-tag::after,
   .cta-final .section-tag::after,
-  .sobre-content .section-tag::after  { left: 100%;  margin-left:  -14px; }
+  .sobre-content .section-tag::after  { margin-left:  12px; }
 
   /* ── SERVICIOS ── */
-  .servicios { background: var(--negro); padding-bottom: 28px; }
+  .servicios { background: var(--negro); padding-bottom: 64px; }
 
   .servicios-header {
     display: flex;
@@ -863,7 +872,11 @@
     grid-template-columns: 1fr 1fr;
     gap: clamp(32px, 6vw, 100px);
     align-items: start;
+    scroll-margin-top: 72px;
   }
+
+  .metodologia { scroll-margin-top: 72px; }
+  #contacto { scroll-margin-top: 72px; }
 
   .sobre-visual {
     position: relative;
@@ -935,12 +948,18 @@
   }
 
   .sobre-badge:hover,
-  .sobre-badge:active {
+  .sobre-badge:active,
+  .sobre-badge.scroll-glow {
     background: var(--verde);
     color: var(--negro);
     border-color: var(--verde);
     box-shadow: 0 0 28px rgba(57,224,102,0.55), 0 0 60px rgba(57,224,102,0.25);
     transform: scale(1.06);
+  }
+
+  .sobre-badge.scroll-glow .badge-medal {
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.4));
+    transform: scale(1.1);
   }
 
   .sobre-badge .badge-medal {
@@ -1087,7 +1106,12 @@
   }
 
   .meto-overtitle {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 3px;
@@ -1095,21 +1119,23 @@
     color: var(--verde);
     margin-bottom: 28px;
     position: relative;
-    padding: 0 18px;
+    padding: 0;
   }
 
   .meto-overtitle::before,
   .meto-overtitle::after {
     content: '';
-    position: absolute;
-    top: 50%;
+    display: block;
     width: 32px;
     height: 1px;
     background: var(--verde);
     opacity: 0.5;
+    flex-shrink: 0;
+    position: static;
+    top: auto;
   }
-  .meto-overtitle::before { right: 100%; margin-right: -14px; }
-  .meto-overtitle::after  { left: 100%;  margin-left:  -14px; }
+  .meto-overtitle::before { margin-right: 12px; }
+  .meto-overtitle::after  { margin-left:  12px; }
 
   .meto-main-title {
     font-family: 'Bebas Neue', sans-serif;
@@ -1566,7 +1592,7 @@
     top: 0;
     left: 0;
     right: 0;
-    overflow: hidden;
+    overflow: visible;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.45s ease;
@@ -1591,7 +1617,6 @@
   }
   .poker-deck-wrapper.open {
     opacity: 1;
-    overflow: visible;
     pointer-events: auto;
   }
   .poker-deck-wrapper.open::before {
@@ -2006,21 +2031,26 @@
     .nav-divider { display: none; }
     .nav-cta { display: none; }
     .hamburger { display: flex; }
-    .hero { padding: 68px 40px 44px; }
-    .hero h1 { font-size: clamp(44px, 5.5vw, 64px); }
+    .hero { padding: 96px 40px 52px; min-height: 100svh; }
+    .hero h1 { font-size: clamp(44px, 7vw, 80px); }
     .hero-sub { font-size: 18px; }
     .hero-desc { font-size: 16px; }
     .cards-grid-removed-intentionally { display: none; } /* placeholder */
     .sobre-mi { gap: 48px; }
-    .meto-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
-    .metodologia { padding: 44px 40px; }
+    .sobre-visual { width: 70%; max-width: 340px; }
+    .meto-grid { grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .metodologia { padding: 52px 40px; }
     .testi-grid { grid-template-columns: repeat(2, 1fr); }
     .hero-stats { gap: 36px; }
     .stat-num { font-size: 36px; }
     .section-title { font-size: clamp(36px, 5vw, 56px); }
-    .big-symmetric-title { font-size: clamp(84px, 10.5vw, 144px) !important; }
+    .big-symmetric-title { font-size: clamp(72px, 9.5vw, 120px) !important; }
     .servicios-header { gap: 32px; }
     .hero-deco { right: -40px; opacity: 0.5; }
+    footer { padding: 36px 40px 28px; }
+    .cta-final { padding: 60px 40px; }
+    /* scroll-margin para nav de 68px */
+    .sobre-mi, .metodologia, #contacto { scroll-margin-top: 68px; }
     /* poker cards */
     .poker-deck {
       grid-template-columns: repeat(2, 1fr);
@@ -2066,9 +2096,12 @@
     .nav-logo-img img { height: 40px !important; }
     .hamburger { display: flex; }
 
+    /* scroll-margin para nav de 64px en móvil */
+    .sobre-mi, .metodologia, #contacto { scroll-margin-top: 64px; }
+
     .hero {
-      padding: 60px 20px 36px;
-      min-height: auto;
+      padding: 88px 20px 44px;
+      min-height: 100svh;
     }
     .hero h1 {
       font-size: clamp(38px, 9vw, 56px);
@@ -2123,13 +2156,14 @@
 
 
     .sobre-mi { grid-template-columns: 1fr; gap: 40px; }
-    .meto-grid { grid-template-columns: 1fr; gap: 24px; }
+    .sobre-visual { width: 72%; max-width: 300px; margin: 0 auto; }
+    .meto-grid { grid-template-columns: repeat(2, 1fr); gap: 2px; }
     .metodologia { padding: 36px 20px; }
     .testi-grid { grid-template-columns: 1fr; gap: 24px; }
     .footer-top { flex-direction: column; gap: 32px; }
     .footer-links { flex-direction: column; gap: 32px; }
-    .cta-final { padding: 40px 20px; }
-    footer { padding: 32px 20px 20px; }
+    .cta-final { padding: 48px 20px; }
+    footer { padding: 36px 20px 20px; }
     .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
     .servicios-header {
       flex-direction: column;
@@ -2140,7 +2174,7 @@
     .hero-deco { display: none; }
 
     .section-title { font-size: clamp(32px, 8vw, 48px); }
-    .big-symmetric-title { font-size: clamp(72px, 15vw, 108px) !important; }
+    .big-symmetric-title { font-size: clamp(60px, 14vw, 96px) !important; }
     .section-tag { font-size: 11px; }
 
     /* Testimonios más legibles */
@@ -2204,7 +2238,10 @@
     .nav-logo-img img { height: 36px !important; }
     .hamburger { display: flex; }
 
-    .hero { padding: 90px 16px 50px; }
+    /* scroll-margin para nav de 60px */
+    .sobre-mi, .metodologia, #contacto { scroll-margin-top: 60px; }
+
+    .hero { padding: 84px 16px 44px; min-height: 100svh; }
     .hero h1 { font-size: clamp(32px, 9vw, 44px); }
     .hero-sub { font-size: 16px; }
     .hero-desc { font-size: 14px; }
@@ -2212,7 +2249,10 @@
 
     section { padding: 28px 16px; }
     .section-title { font-size: clamp(28px, 8vw, 40px); }
-    .big-symmetric-title { font-size: clamp(63px, 16.5vw, 96px) !important; }
+    .big-symmetric-title { font-size: clamp(52px, 15vw, 80px) !important; }
+
+    .sobre-visual { width: 80%; max-width: 260px; }
+    .meto-grid { grid-template-columns: 1fr; gap: 2px; }
 
     .stat-num { font-size: 30px; }
     .stat-item { padding-top: 46px; }
@@ -2304,6 +2344,8 @@
 
   /* ─── MÓVILES MUY PEQUEÑOS: poker cards y layout hasta 380px ─── */
   @media (max-width: 380px) {
+    .hero { padding: 76px 12px 36px; }
+    .big-symmetric-title { font-size: clamp(44px, 14.5vw, 64px) !important; }
     .poker-deck {
       grid-template-columns: 1fr 1fr;
       grid-auto-rows: 1fr;
@@ -2375,6 +2417,55 @@
     }
     .stat-num { font-size: 29px; }
     .stat-item { padding-top: 42px; }
+
+    /* ── Cartas en landscape móvil: 4 columnas, aspecto reducido ── */
+    .poker-deck {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      padding: 6px 2px 14px;
+    }
+    .poker-card {
+      aspect-ratio: 3 / 5;
+      min-height: unset;
+      height: auto;
+      /* Reducir la perspectiva del flip para que no sobresalga del viewport */
+      perspective: 600px;
+    }
+    .pc-num { font-size: 18px; }
+    .pc-title {
+      font-size: 14px;
+      letter-spacing: 0.1px;
+      margin-bottom: 5px;
+      line-height: 1.1;
+      max-height: none;
+      overflow: visible;
+      font-weight: 800;
+    }
+    .pc-list { gap: 2px; }
+    .pc-list li, .pc-text { font-size: 9px; line-height: 1.25; }
+    .pc-body .pc-text[style*="font-size:12px"],
+    .pc-body .pc-text[style*="font-size: 12px"] { font-size: 8.5px !important; line-height: 1.2; }
+    .pc-list li { padding: 2px 0 2px 10px; }
+    .pc-list li::before { top: 7px; width: 3.5px; height: 3.5px; }
+    .pc-divider { margin-bottom: 6px; width: 20px; height: 1px; }
+    .pc-body { padding: 6px 7px 8px; }
+    .pc-header { padding: 7px 7px 0; }
+    .pc-suit-corner { width: 24px; height: 24px; margin-top: 1px; }
+    .pc-badge { font-size: 7px; padding: 3px 6px; letter-spacing: 0.8px; }
+    .servicio-toggle { gap: 8px; margin: 10px 0 18px; }
+    .elige-opcion { margin-top: 20px; font-size: 14px; letter-spacing: 2px; }
+    .toggle-btn { min-width: 0; width: auto; padding: 10px 18px; font-size: 16px; letter-spacing: 1px; }
+    .poker-card--red .pc-list li, .poker-card--red .pc-text,
+    .poker-card--green .pc-list li, .poker-card--green .pc-text { font-size: 11px; line-height: 1.3; }
+    .pc-title.gold-neon { text-shadow: 0 0 4px rgba(255,224,51,0.45); letter-spacing: 0.5px; }
+    .pc-text-neon { text-shadow: none; color: #ffe033; }
+    .pc-list.gold li { text-shadow: none; color: #ffe033; }
+    .pc-list--soporte li {
+      font-size: 11px !important;
+      color: #ffe033 !important;
+      text-shadow: 0 0 5px rgba(255,224,51,0.9), 0 0 12px rgba(255,224,51,0.5) !important;
+      line-height: 1.3;
+    }
   }
 
   /* ─── PREFERS REDUCED MOTION (accesibilidad) ─── */
@@ -2925,7 +3016,8 @@
   <!-- Botón scroll duplicado (aparece cuando las cartas están desplegadas) -->
   <div id="servicios-scroll-btn" style="
     display:flex; justify-content:center;
-    margin-top:32px; margin-bottom:8px;
+    margin-top:0; margin-bottom:0;
+    padding-top:40px;
     opacity:0;
     pointer-events:none;
     transition: opacity 0.35s ease;
@@ -3023,7 +3115,7 @@
 
 <!-- CTA FINAL -->
 <section class="cta-final" id="contacto">
-  <div class="section-tag" style="display:inline-block; margin-bottom:20px;">Empieza ahora</div>
+  <div class="section-tag" style="margin-bottom:20px;">Empieza ahora</div>
   <h2 class="section-title big-symmetric-title">¿LISTO PARA<br><span style="color:var(--verde)">TU MEJOR VERSIÓN?</span></h2>
   <p class="section-desc">La primera consulta y entrevista para valorar tu caso es <span style="color:#ffe033; text-shadow:0 0 6px rgba(255,224,51,0.9), 0 0 14px rgba(255,224,51,0.6);">completamente gratis</span>.<br><br>Cuéntame tu objetivo y lo haremos posible.</p>
 
@@ -3199,17 +3291,25 @@
 
     let activeDeck     = null;
     let pendingCleanup = null;
+    let scrollBtnTimer = null;
 
     const COLLAPSE_MS = 480;
     const scrollBtn   = document.getElementById('servicios-scroll-btn');
 
     function showScrollBtn() {
       if (!scrollBtn) return;
-      scrollBtn.style.opacity       = '1';
-      scrollBtn.style.pointerEvents = 'auto';
+      // La carta 4 tiene transition-delay 0.46s + duración flip 0.75s = 1.21s
+      // Aparecemos la flecha justo después de que termine la carta 4
+      if (scrollBtnTimer) { clearTimeout(scrollBtnTimer); scrollBtnTimer = null; }
+      scrollBtnTimer = setTimeout(function () {
+        scrollBtnTimer = null;
+        scrollBtn.style.opacity       = '1';
+        scrollBtn.style.pointerEvents = 'auto';
+      }, 1250);
     }
 
     function hideScrollBtn(cb) {
+      if (scrollBtnTimer) { clearTimeout(scrollBtnTimer); scrollBtnTimer = null; }
       if (!scrollBtn) { if (cb) cb(); return; }
       scrollBtn.style.opacity       = '0';
       scrollBtn.style.pointerEvents = 'none';
@@ -3233,15 +3333,17 @@
     }
 
     function showDeck(deck, fast) {
+      // Medir la altura real sin forzar overflow:hidden (que cortaría transforms 3D)
+      // Activamos el deck invisible para leer scrollHeight con overflow:visible
       deck.style.visibility = 'hidden';
       deck.style.opacity    = '0';
-      deck.style.overflow   = 'hidden';
       deck.classList.add('open');
+      // Forzar reflow para que el navegador calcule el layout
+      void deck.offsetHeight;
       const h = deck.scrollHeight;
       deck.classList.remove('open');
       deck.style.visibility = '';
       deck.style.opacity    = '';
-      deck.style.overflow   = '';
       setContainerHeight(h, fast);
       requestAnimationFrame(() => { deck.classList.add('open'); });
     }
@@ -3279,15 +3381,18 @@
       showDeck(deck, hadOpen);
       showScrollBtn();
 
-      if (!hadOpen) {
-        const navH = (document.querySelector('nav') || { offsetHeight: 72 }).offsetHeight;
-        setTimeout(() => {
-          const carta1 = deck.querySelector('.poker-card');
-          const target = carta1 || decksContainer;
-          const top = target.getBoundingClientRect().top + window.scrollY - navH - 16;
-          window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-        }, 80);
-      }
+      // Siempre centrar las cartas tras la animación de despliegue
+      const navH  = (document.querySelector('nav') || { offsetHeight: 72 }).offsetHeight;
+      const delay = hadOpen ? 80 : 580; // si ya había deck abierto cambia rápido, si no esperar a que se despliegue
+      setTimeout(function () {
+        const deckRect = decksContainer.getBoundingClientRect();
+        const deckTop  = deckRect.top + window.scrollY - navH - 16;
+        const deckH    = decksContainer.offsetHeight;
+        const viewH    = window.innerHeight - navH;
+        // Centra el bloque; si es más alto que la ventana alinea arriba
+        const centered = deckTop - Math.max(0, (viewH - deckH) / 2);
+        window.scrollTo({ top: Math.max(0, centered), behavior: 'smooth' });
+      }, delay);
     }
 
     btnPresencial.addEventListener('click', () => {
@@ -3296,6 +3401,39 @@
     btnOnline.addEventListener('click', () => {
       activeDeck === 'online' ? closeAll() : openDeck('online');
     });
+
+    // Recalcular altura del contenedor al rotar pantalla o redimensionar
+    // para que las cartas no queden cortadas en landscape
+    function recalcOpenDeckHeight() {
+      if (!activeDeck) return;
+      const deck = activeDeck === 'presencial' ? deckPresencial : deckOnline;
+      if (!deck.classList.contains('open')) return;
+      // Medir altura real con overflow visible
+      const h = deck.scrollHeight;
+      setContainerHeight(h, true);
+    }
+
+    window.addEventListener('resize', recalcOpenDeckHeight, { passive: true });
+    window.addEventListener('orientationchange', function () {
+      // Esperar a que el navegador actualice las dimensiones tras rotar
+      setTimeout(recalcOpenDeckHeight, 350);
+    });
+  })();
+</script>
+
+<script>
+  /* ── Badge "Máxima Calidad" se ilumina solo mientras el usuario hace scroll ── */
+  (function () {
+    const badge = document.querySelector('.sobre-badge');
+    if (!badge) return;
+    let scrollTimer = null;
+    window.addEventListener('scroll', function () {
+      badge.classList.add('scroll-glow');
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function () {
+        badge.classList.remove('scroll-glow');
+      }, 300);
+    }, { passive: true });
   })();
 </script>
 
