@@ -2405,10 +2405,56 @@
     .hero { padding: 96px 120px 64px; }
   }
 
-  /* ─── ORIENTACIÓN HORIZONTAL EN MÓVIL Y TABLET ─── */
-  /* Se mantiene el diseño vertical sin cambios visuales al rotar */
-  @media (orientation: landscape) and (max-width: 1024px) {
-    /* Sin cambios: la web se muestra igual que en vertical */
+  /* ─── ORIENTACIÓN HORIZONTAL: SOLO CARTAS ─── */
+
+  /* iPhone 7 landscape (667px) y móviles similares:
+     Las cartas pasan a 2 col con altura auto para que no se corten */
+  @media (orientation: landscape) and (max-width: 768px) {
+    .poker-deck {
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: auto;
+      gap: 10px;
+      padding: 6px 2px 20px;
+    }
+    .poker-card {
+      aspect-ratio: unset;
+      height: auto;
+      min-height: unset;
+    }
+  }
+
+  /* iPad 11" landscape (~1194px): 4 columnas con tamaños proporcionales
+     para que las cartas no queden desproporcionadas */
+  @media (orientation: landscape) and (min-width: 1024px) and (max-width: 1280px) {
+    .poker-deck {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .poker-card {
+      aspect-ratio: 3 / 5;
+      height: auto;
+      min-height: unset;
+    }
+    .pc-num { font-size: 36px; }
+    .pc-title { font-size: 18px; letter-spacing: 0.5px; margin-bottom: 6px; }
+    .pc-list li, .pc-text { font-size: 11px; line-height: 1.3; }
+    .pc-body .pc-text[style*="font-size:12px"],
+    .pc-body .pc-text[style*="font-size: 12px"] { font-size: 10px !important; line-height: 1.25; }
+    .pc-list li { padding: 2px 0 2px 13px; }
+    .pc-list li::before { top: 8px; width: 5px; height: 5px; }
+    .pc-divider { margin-bottom: 7px; width: 28px; height: 1.5px; }
+    .pc-body { padding: 10px 12px 12px; }
+    .pc-header { padding: 12px 12px 0; }
+    .pc-suit-corner { width: 50px; height: 50px; }
+    .pc-badge { font-size: 8px; padding: 3px 8px; letter-spacing: 0.8px; }
+    .poker-card--red .pc-list li, .poker-card--red .pc-text,
+    .poker-card--green .pc-list li, .poker-card--green .pc-text { font-size: 12px; line-height: 1.35; }
+    .pc-list--soporte li {
+      font-size: 12px !important;
+      color: #ffe033 !important;
+      text-shadow: 0 0 5px rgba(255,224,51,0.9), 0 0 12px rgba(255,224,51,0.5) !important;
+      line-height: 1.35;
+    }
   }
 
   /* ─── PREFERS REDUCED MOTION (accesibilidad) ─── */
