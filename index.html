@@ -2564,7 +2564,9 @@
 
 <section class="hero">
 
-  <img src="https://raw.githubusercontent.com/idayan2012/idaromefit/refs/heads/main/imege-hero-web.png" alt="IDAROMEFIT - Nutrición y Deporte" style="max-width:min(760px, 90vw); width:100%; height:auto; display:block; margin-bottom:8px;">
+  <img src="https://raw.githubusercontent.com/idayan2012/idaromefit/refs/heads/main/imege-hero-web.png"
+       alt="IDAROMEFIT - Nutrición y Deporte"
+       style="max-width:min(760px, 90vw); width:100%; height:auto; display:block; margin-bottom:8px; mix-blend-mode:lighten;">
 
   <div class="hero-buttons" style="margin-top:36px;">
     <a href="https://form.jotform.com/252633186626360" target="_blank" class="btn-primary">
@@ -3412,15 +3414,15 @@
 </script>
 
 <script>
-  /* ── Badge "Máxima Calidad": glow activado por IntersectionObserver.
-     Se usa IntersectionObserver en lugar de un listener de scroll para
-     evitar parpadeos y re-escalados continuos. El efecto se aplica
-     suavemente cuando el badge entra en el viewport. ── */
+  /* ── Badge "Máxima Calidad": se ilumina SOLO mientras el usuario
+     hace scroll dentro de la sección "sobre mí" o al pulsar el botón
+     de la sección. Fuera de ese contexto, el badge queda apagado. ── */
   (function () {
-    var badge = document.querySelector('.sobre-badge');
-    if (!badge) return;
+    var badge    = document.querySelector('.sobre-badge');
+    var section  = document.getElementById('sobre-mi');
+    if (!badge || !section) return;
 
-    /* Clase CSS que replica el estado :hover sin afectar el texto */
+    /* Clase CSS que activa el glow verde */
     var style = document.createElement('style');
     style.textContent = [
       '.sobre-badge.badge--glow {',
@@ -3437,18 +3439,58 @@
     ].join('\n');
     document.head.appendChild(style);
 
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          /* Pequeño retardo para que la animación se aprecie al hacer scroll */
-          setTimeout(function () { badge.classList.add('badge--glow'); }, 150);
-        } else {
-          badge.classList.remove('badge--glow');
-        }
-      });
-    }, { threshold: 0.6 }); /* Se activa cuando el 60 % del badge es visible */
+    var glowTimer  = null;  // temporizador para apagar el glow
+    var isScrolling = false; // true mientras el usuario está haciendo scroll activo
 
-    observer.observe(badge);
+    /* Activa el glow durante `ms` milisegundos y luego lo apaga */
+    function glowFor(ms) {
+      badge.classList.add('badge--glow');
+      if (glowTimer) clearTimeout(glowTimer);
+      glowTimer = setTimeout(function () {
+        badge.classList.remove('badge--glow');
+        glowTimer = null;
+      }, ms);
+    }
+
+    /* Comprueba si la sección "sobre mí" está visible en el viewport */
+    function isSectionInView() {
+      var rect = section.getBoundingClientRect();
+      var wh   = window.innerHeight || document.documentElement.clientHeight;
+      /* La sección está "en vista" si al menos una parte es visible */
+      return rect.top < wh && rect.bottom > 0;
+    }
+
+    /* Listener de scroll: activa el glow mientras se scrollea sobre la sección */
+    var scrollDebounce = null;
+    window.addEventListener('scroll', function () {
+      if (!isSectionInView()) return; // ignora scroll fuera de la sección
+
+      /* Activar glow mientras dure el scroll (se renueva cada evento) */
+      badge.classList.add('badge--glow');
+      if (glowTimer)  { clearTimeout(glowTimer);  glowTimer  = null; }
+      if (scrollDebounce) clearTimeout(scrollDebounce);
+
+      /* Apagar 600ms después de que el scroll se detenga */
+      scrollDebounce = setTimeout(function () {
+        badge.classList.remove('badge--glow');
+        scrollDebounce = null;
+      }, 600);
+    }, { passive: true });
+
+    /* Activar también al pulsar cualquier enlace/botón que lleve a #sobre-mi */
+    document.addEventListener('click', function (e) {
+      var el = e.target.closest('a, button');
+      if (!el) return;
+      var href = el.getAttribute('href') || '';
+      /* Detectar clic en enlace a la sección o en el botón de scroll de servicios/método */
+      var isSobreLink = href === '#sobre-mi' || href.endsWith('#sobre-mi');
+      /* También el botón del hero "Empieza hoy" que hace scroll al hero no aplica,
+         pero sí los enlaces de nav y menú móvil que van a #sobre-mi */
+      if (isSobreLink) {
+        /* Esperar a que el scroll llegue y luego iluminar durante 2s */
+        setTimeout(function () { glowFor(2000); }, 800);
+      }
+    });
   })();
 </script>
 
