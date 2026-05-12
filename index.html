@@ -2399,37 +2399,30 @@
 
   @media (min-width: 768px) and (max-width: 1280px) and (orientation: portrait) {
     .poker-deck {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      overflow-y: visible;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: auto;
       gap: 16px;
-      padding: 8px 24px 20px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
+      padding: 8px 4px 20px;
+      overflow: visible;
     }
-    .poker-deck::-webkit-scrollbar { display: none; }
     .poker-card {
-      flex: 0 0 220px;
-      width: 220px;
-      min-width: 220px;
-      aspect-ratio: 2 / 3;
+      aspect-ratio: unset;
       height: auto;
-      scroll-snap-align: start;
+      min-height: unset;
     }
-    .pc-num { font-size: 38px; }
-    .pc-title { font-size: 20px; letter-spacing: 0.3px; margin-bottom: 5px; line-height: 1.1; }
-    .pc-list li, .pc-text { font-size: 14px; line-height: 1.2; }
+    .pc-num { font-size: 42px; }
+    .pc-title { font-size: 22px; letter-spacing: 0.3px; margin-bottom: 6px; line-height: 1.1; }
+    .pc-list li, .pc-text { font-size: 15px; line-height: 1.3; }
     .pc-body .pc-text[style*="font-size:12px"],
-    .pc-body .pc-text[style*="font-size: 12px"] { font-size: 12px !important; }
-    .pc-list li { padding: 2px 0 2px 15px; }
-    .pc-list li::before { top: 7px; width: 5px; height: 5px; }
-    .pc-divider { margin-bottom: 6px; width: 32px; height: 1.5px; }
-    .pc-body { padding: 12px 14px 14px; }
-    .pc-header { padding: 12px 14px 0; }
-    .pc-suit-corner { width: 56px; height: 56px; margin-top: 2px; }
+    .pc-body .pc-text[style*="font-size: 12px"] { font-size: 13px !important; line-height: 1.3 !important; }
+    .pc-list li { padding: 3px 0 3px 16px; }
+    .pc-list li::before { top: 8px; width: 6px; height: 6px; }
+    .pc-divider { margin-bottom: 8px; width: 36px; height: 1.5px; }
+    .pc-body { padding: 14px 16px 16px; }
+    .pc-header { padding: 14px 16px 0; }
+    .pc-suit-corner { width: 60px; height: 60px; margin-top: 2px; }
+    .pc-list { gap: 2px; }
   }
 
   @media (orientation: landscape) and (min-width: 1024px) and (max-width: 1280px) {
