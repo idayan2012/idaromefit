@@ -2399,25 +2399,37 @@
 
   @media (min-width: 768px) and (max-width: 1280px) and (orientation: portrait) {
     .poker-deck {
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overflow-y: visible;
+      gap: 16px;
+      padding: 8px 24px 20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
+    .poker-deck::-webkit-scrollbar { display: none; }
     .poker-card {
+      flex: 0 0 220px;
+      width: 220px;
+      min-width: 220px;
       aspect-ratio: 2 / 3;
       height: auto;
-      min-height: unset;
+      scroll-snap-align: start;
     }
-    .pc-num { font-size: 28px; }
-    .pc-title { font-size: 14px; letter-spacing: 0.3px; margin-bottom: 5px; line-height: 1.15; }
-    .pc-list li, .pc-text { font-size: 9.5px; line-height: 1.3; }
+    .pc-num { font-size: 38px; }
+    .pc-title { font-size: 16px; letter-spacing: 0.3px; margin-bottom: 6px; line-height: 1.2; }
+    .pc-list li, .pc-text { font-size: 12px; line-height: 1.35; }
     .pc-body .pc-text[style*="font-size:12px"],
-    .pc-body .pc-text[style*="font-size: 12px"] { font-size: 9px !important; line-height: 1.25; }
-    .pc-list li { padding: 2px 0 2px 12px; }
-    .pc-list li::before { top: 7px; width: 4px; height: 4px; }
-    .pc-divider { margin-bottom: 6px; width: 24px; height: 1.5px; }
-    .pc-body { padding: 8px 8px 10px; }
-    .pc-header { padding: 8px 8px 0; }
-    .pc-suit-corner { width: 44px; height: 44px; margin-top: 2px; }
+    .pc-body .pc-text[style*="font-size: 12px"] { font-size: 11px !important; }
+    .pc-list li { padding: 3px 0 3px 15px; }
+    .pc-list li::before { top: 8px; width: 5px; height: 5px; }
+    .pc-divider { margin-bottom: 8px; width: 32px; height: 1.5px; }
+    .pc-body { padding: 12px 14px 14px; }
+    .pc-header { padding: 12px 14px 0; }
+    .pc-suit-corner { width: 56px; height: 56px; margin-top: 2px; }
   }
 
   @media (orientation: landscape) and (min-width: 1024px) and (max-width: 1280px) {
