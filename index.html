@@ -841,7 +841,7 @@
   .sobre-content .section-tag::after  { margin-left:  12px; }
 
   /* ── SERVICIOS ── */
-  .servicios { background: var(--negro); padding-bottom: 64px; }
+  .servicios { background: var(--negro); padding-bottom: 80px; }
 
   .servicios-header {
     display: flex;
@@ -1856,13 +1856,13 @@
 
   .pc-title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 30px;
+    font-size: 34.5px;
     font-weight: 900;
     letter-spacing: 1.6px;
     text-transform: uppercase;
     color: #fff;
     line-height: 1.15;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     text-align: left;
   }
 
@@ -1870,7 +1870,7 @@
     height: 2px;
     width: 48px;
     border-radius: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 7px;
     flex-shrink: 0;
   }
   .pc-divider.red  { background: #ff2244; box-shadow: 0 0 8px rgba(255,34,68,0.7); }
@@ -1888,8 +1888,8 @@
   }
   .pc-list li {
     position: relative;
-    padding: 3px 0 3px 20px;
-    font-size: 15.5px;
+    padding: 2px 0 2px 20px;
+    font-size: 17.8px;
     line-height: 1.3;
     color: rgba(255,255,255,0.85);
     font-weight: 500;
@@ -1899,7 +1899,7 @@
     content: '';
     position: absolute;
     left: 0;
-    top: 10px;
+    top: 11px;
     width: 7px; height: 7px;
     border-radius: 50%;
   }
@@ -1921,11 +1921,11 @@
   }
 
   .pc-text {
-    font-size: 17px;
-    line-height: 1.55;
+    font-size: 19.5px;
+    line-height: 1.5;
     color: rgba(255,255,255,0.82);
     font-weight: 500;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     flex: 1;
     text-align: justify;
     text-justify: inter-word;
@@ -1937,11 +1937,11 @@
     overflow-wrap: break-word;
     word-break: break-word;
   }
-  /* Override inline secondary-text size → 15.5px proporcional */
+  /* Override inline secondary-text size → 17.8px proporcional */
   .pc-body .pc-text[style*="font-size:12px"],
   .pc-body .pc-text[style*="font-size: 12px"] {
-    font-size: 15.5px !important;
-    line-height: 1.5 !important;
+    font-size: 17.8px !important;
+    line-height: 1.45 !important;
   }
 
   /* Texto neon para carta 4 */
@@ -1953,11 +1953,11 @@
 
   /* Texto sin justificación */
   .pc-text-left {
-    font-size: 17px;
-    line-height: 1.55;
+    font-size: 19.5px;
+    line-height: 1.5;
     color: rgba(255,255,255,0.82);
     font-weight: 500;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     flex: 1;
     text-align: left;
     letter-spacing: 0.02em;
@@ -2048,22 +2048,22 @@
       align-items: stretch;
     }
     .poker-card {
-      aspect-ratio: 3 / 5;
+      aspect-ratio: 3 / 4.4;
       min-height: unset;
       height: auto;
       align-self: stretch;
     }
     .pc-num { font-size: 48px; }
-    .pc-title { font-size: 30px; letter-spacing: 1px; margin-bottom: 8px; }
-    .pc-list li, .pc-text { font-size: 12px; line-height: 1.3; }
-    .pc-list li { padding: 3px 0 3px 18px; }
+    .pc-title { font-size: 34.5px; letter-spacing: 1px; margin-bottom: 6px; }
+    .pc-list li, .pc-text { font-size: 13.8px; line-height: 1.3; }
+    .pc-list li { padding: 2px 0 2px 18px; }
     .pc-list li::before { top: 8px; width: 6px; height: 6px; }
-    .pc-divider { margin-bottom: 8px; width: 40px; }
+    .pc-divider { margin-bottom: 6px; width: 40px; }
     .pc-body { padding: 12px 14px 14px; }
     .pc-header { padding: 14px 14px 0; }
     .pc-suit-corner { width: 68px; height: 68px; }
     .poker-card--red .pc-list li, .poker-card--red .pc-text,
-    .poker-card--green .pc-list li, .poker-card--green .pc-text { font-size: 13px; line-height: 1.3; }
+    .poker-card--green .pc-list li, .poker-card--green .pc-text { font-size: 15px; line-height: 1.3; }
   }
 
   /* ─── TABLET MEDIANA: sobre-mi a columna única ─── */
@@ -2180,26 +2180,26 @@
       padding: 6px 2px 20px;
     }
     .poker-card {
-      aspect-ratio: unset;
+      aspect-ratio: 3 / 4.5;
       min-height: unset;
       height: 100%;
     }
-    .pc-num { font-size: 33px; }
+    .pc-num { font-size: 32px; }
     .pc-title {
-      font-size: 19.5px;
+      font-size: 20px;
       letter-spacing: 0.3px;
-      margin-bottom: 7px;
+      margin-bottom: 5px;
       line-height: 1.15;
       max-height: none;
       overflow: visible;
     }
-    .pc-list { gap: 3px; }
-    .pc-list li, .pc-text { font-size: 11px; line-height: 1.35; }
+    .pc-list { gap: 2px; }
+    .pc-list li, .pc-text { font-size: 11.5px; line-height: 1.3; }
     .pc-body .pc-text[style*="font-size:12px"],
-    .pc-body .pc-text[style*="font-size: 12px"] { font-size: 10.5px !important; line-height: 1.3; }
-    .pc-list li { padding: 3px 0 3px 13px; }
+    .pc-body .pc-text[style*="font-size: 12px"] { font-size: 11px !important; line-height: 1.25; }
+    .pc-list li { padding: 2px 0 2px 13px; }
     .pc-list li::before { top: 9px; width: 4.5px; height: 4.5px; }
-    .pc-divider { margin-bottom: 8px; width: 28px; height: 1.5px; }
+    .pc-divider { margin-bottom: 6px; width: 28px; height: 1.5px; }
     .pc-body { padding: 9px 10px 11px; }
     .pc-header { padding: 9px 10px 0; }
     .pc-suit-corner { width: 48px; height: 48px; margin-top: 2px; }
@@ -2208,17 +2208,17 @@
     .elige-opcion { margin-top: 32px; font-size: 17px; letter-spacing: 2.5px; }
     .toggle-btn { min-width: 0; width: 100%; padding: 14px 16px; font-size: 20px; letter-spacing: 1.5px; }
     .poker-card--red .pc-list li, .poker-card--red .pc-text,
-    .poker-card--green .pc-list li, .poker-card--green .pc-text { font-size: 14.3px; line-height: 1.4; }
+    .poker-card--green .pc-list li, .poker-card--green .pc-text { font-size: 14.5px; line-height: 1.3; }
     /* carta 4: reducir glow en pantallas medianas */
     .pc-title.gold-neon { text-shadow: 0 0 6px rgba(255,224,51,0.5), 0 0 12px rgba(255,224,51,0.2); letter-spacing: 1px; }
     .pc-text-neon { text-shadow: 0 0 6px rgba(255,224,51,0.25); }
     .pc-list.gold li { text-shadow: 0 0 6px rgba(255,224,51,0.4); }
     /* carta 4 soporte: ítems 30% más grandes, amarillo neón */
     .pc-list--soporte li {
-      font-size: 14.3px !important;
+      font-size: 14.5px !important;
       color: #ffe033 !important;
       text-shadow: 0 0 6px rgba(255,224,51,0.95), 0 0 14px rgba(255,224,51,0.6) !important;
-      line-height: 1.4;
+      line-height: 1.3;
     }
   }
 
@@ -2289,27 +2289,27 @@
       padding: 4px 0 16px;
     }
     .poker-card {
-      aspect-ratio: unset;
+      aspect-ratio: 3 / 4.6;
       min-height: unset;
       height: 100%;
     }
-    .pc-num { font-size: 30px; }
+    .pc-num { font-size: 28px; }
     .pc-title {
-      font-size: 18px;
+      font-size: 17.5px;
       letter-spacing: 0.2px;
-      margin-bottom: 6px;
-      line-height: 1.15;
+      margin-bottom: 4px;
+      line-height: 1.1;
       max-height: none;
       overflow: visible;
       font-weight: 800;
     }
-    .pc-list { gap: 2px; }
-    .pc-list li, .pc-text { font-size: 10px; line-height: 1.3; }
+    .pc-list { gap: 1px; }
+    .pc-list li, .pc-text { font-size: 10.5px; line-height: 1.3; }
     .pc-body .pc-text[style*="font-size:12px"],
-    .pc-body .pc-text[style*="font-size: 12px"] { font-size: 9.5px !important; line-height: 1.25; }
-    .pc-list li { padding: 2px 0 2px 12px; }
-    .pc-list li::before { top: 8px; width: 4px; height: 4px; }
-    .pc-divider { margin-bottom: 7px; width: 24px; height: 1.5px; }
+    .pc-body .pc-text[style*="font-size: 12px"] { font-size: 10px !important; line-height: 1.25; }
+    .pc-list li { padding: 1px 0 1px 11px; }
+    .pc-list li::before { top: 7px; width: 4px; height: 4px; }
+    .pc-divider { margin-bottom: 4px; width: 22px; height: 1.5px; }
     .pc-body { padding: 8px 8px 10px; }
     .pc-header { padding: 8px 8px 0; }
     .pc-suit-corner { width: 42px; height: 42px; margin-top: 2px; }
@@ -2318,17 +2318,17 @@
     .elige-opcion { margin-top: 28px; font-size: 15px; letter-spacing: 2px; }
     .toggle-btn { min-width: 0; width: 100%; padding: 12px 14px; font-size: 18px; letter-spacing: 1.2px; }
     .poker-card--red .pc-list li, .poker-card--red .pc-text,
-    .poker-card--green .pc-list li, .poker-card--green .pc-text { font-size: 13px; line-height: 1.4; }
+    .poker-card--green .pc-list li, .poker-card--green .pc-text { font-size: 13.5px; line-height: 1.3; }
     /* carta 4: glow mínimo en móvil pequeño */
     .pc-title.gold-neon { text-shadow: 0 0 4px rgba(255,224,51,0.45); letter-spacing: 0.5px; }
     .pc-text-neon { text-shadow: none; color: #ffe033; }
     .pc-list.gold li { text-shadow: none; color: #ffe033; }
     /* carta 4 soporte: ítems 30% más grandes, amarillo neón */
     .pc-list--soporte li {
-      font-size: 13px !important;
+      font-size: 13.5px !important;
       color: #ffe033 !important;
       text-shadow: 0 0 5px rgba(255,224,51,0.9), 0 0 12px rgba(255,224,51,0.5) !important;
-      line-height: 1.4;
+      line-height: 1.3;
     }
   }
 
@@ -2343,27 +2343,27 @@
       padding: 2px 0 12px;
     }
     .poker-card {
-      aspect-ratio: unset;
+      aspect-ratio: 3 / 4.6;
       min-height: unset;
       height: 100%;
     }
-    .pc-num { font-size: 27px; }
+    .pc-num { font-size: 25px; }
     .pc-title {
-      font-size: 16.5px;
+      font-size: 15.5px;
       letter-spacing: 0;
-      margin-bottom: 5px;
+      margin-bottom: 3px;
       line-height: 1.1;
       max-height: none;
       overflow: visible;
       font-weight: 800;
     }
-    .pc-list { gap: 2px; }
+    .pc-list { gap: 1px; }
     .pc-list li, .pc-text { font-size: 9.5px; line-height: 1.25; }
     .pc-body .pc-text[style*="font-size:12px"],
     .pc-body .pc-text[style*="font-size: 12px"] { font-size: 9px !important; line-height: 1.2; }
-    .pc-list li { padding: 2px 0 2px 10px; }
-    .pc-list li::before { top: 7px; width: 3.5px; height: 3.5px; }
-    .pc-divider { margin-bottom: 6px; width: 20px; height: 1px; }
+    .pc-list li { padding: 1px 0 1px 9px; }
+    .pc-list li::before { top: 6px; width: 3.5px; height: 3.5px; }
+    .pc-divider { margin-bottom: 3px; width: 18px; height: 1px; }
     .pc-body { padding: 6px 7px 8px; }
     .pc-header { padding: 7px 7px 0; }
     .pc-suit-corner { width: 36px; height: 36px; margin-top: 1px; }
@@ -2372,17 +2372,17 @@
     .elige-opcion { margin-top: 24px; font-size: 13.5px; letter-spacing: 1.5px; }
     .toggle-btn { min-width: 0; width: 100%; padding: 10px 12px; font-size: 16.5px; letter-spacing: 1px; }
     .poker-card--red .pc-list li, .poker-card--red .pc-text,
-    .poker-card--green .pc-list li, .poker-card--green .pc-text { font-size: 12.4px; line-height: 1.35; }
+    .poker-card--green .pc-list li, .poker-card--green .pc-text { font-size: 12.5px; line-height: 1.3; }
     /* carta 4: sin glow en pantallas muy pequeñas */
     .pc-title.gold-neon { text-shadow: none; color: #ffe033; letter-spacing: 0.3px; }
     .pc-text-neon { text-shadow: none; color: #ffe033; }
     .pc-list.gold li { text-shadow: none; color: #ffe033; }
     /* carta 4 soporte: ítems 30% más grandes, amarillo neón */
     .pc-list--soporte li {
-      font-size: 12.35px !important;
+      font-size: 12.5px !important;
       color: #ffe033 !important;
       text-shadow: none !important;
-      line-height: 1.35;
+      line-height: 1.3;
     }
   }
 
@@ -2405,9 +2405,63 @@
       padding: 6px 2px 20px;
     }
     .poker-card {
-      aspect-ratio: unset;
+      aspect-ratio: 3 / 4;
       height: auto;
       min-height: unset;
+    }
+    .pc-num { font-size: 32px; }
+    .pc-title { font-size: 21px; letter-spacing: 0.4px; margin-bottom: 5px; }
+    .pc-list li, .pc-text { font-size: 12px; line-height: 1.3; }
+    .pc-body .pc-text[style*="font-size:12px"],
+    .pc-body .pc-text[style*="font-size: 12px"] { font-size: 11.5px !important; line-height: 1.25; }
+    .pc-list li { padding: 1px 0 1px 13px; }
+    .pc-list li::before { top: 8px; width: 5px; height: 5px; }
+    .pc-divider { margin-bottom: 5px; width: 28px; height: 1.5px; }
+    .pc-body { padding: 9px 10px 11px; }
+    .pc-header { padding: 10px 10px 0; }
+    .pc-suit-corner { width: 48px; height: 48px; }
+    .poker-card--red .pc-list li, .poker-card--red .pc-text,
+    .poker-card--green .pc-list li, .poker-card--green .pc-text { font-size: 13px; line-height: 1.3; }
+    .pc-list--soporte li {
+      font-size: 13px !important;
+      color: #ffe033 !important;
+      text-shadow: 0 0 5px rgba(255,224,51,0.9), 0 0 12px rgba(255,224,51,0.5) !important;
+      line-height: 1.3;
+    }
+  }
+
+  /* iPhone XS / 16 Pro landscape (812-926px): 2 columnas, cartas más compactas
+     para no parecer iPad portrait. Las letras se ajustan al ancho disponible */
+  @media (orientation: landscape) and (min-width: 769px) and (max-width: 950px) {
+    .poker-deck {
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: auto;
+      gap: 12px;
+      padding: 6px 2px 20px;
+    }
+    .poker-card {
+      aspect-ratio: 3 / 4;
+      height: auto;
+      min-height: unset;
+    }
+    .pc-num { font-size: 38px; }
+    .pc-title { font-size: 24px; letter-spacing: 0.5px; margin-bottom: 5px; }
+    .pc-list li, .pc-text { font-size: 13.2px; line-height: 1.3; }
+    .pc-body .pc-text[style*="font-size:12px"],
+    .pc-body .pc-text[style*="font-size: 12px"] { font-size: 12.5px !important; line-height: 1.25; }
+    .pc-list li { padding: 1px 0 1px 14px; }
+    .pc-list li::before { top: 8px; width: 5px; height: 5px; }
+    .pc-divider { margin-bottom: 5px; width: 32px; height: 1.5px; }
+    .pc-body { padding: 10px 12px 12px; }
+    .pc-header { padding: 12px 12px 0; }
+    .pc-suit-corner { width: 56px; height: 56px; }
+    .poker-card--red .pc-list li, .poker-card--red .pc-text,
+    .poker-card--green .pc-list li, .poker-card--green .pc-text { font-size: 14.5px; line-height: 1.3; }
+    .pc-list--soporte li {
+      font-size: 14.5px !important;
+      color: #ffe033 !important;
+      text-shadow: 0 0 5px rgba(255,224,51,0.9), 0 0 12px rgba(255,224,51,0.5) !important;
+      line-height: 1.3;
     }
   }
 
@@ -2419,29 +2473,29 @@
       gap: 16px;
     }
     .poker-card {
-      aspect-ratio: 3 / 5;
+      aspect-ratio: 3 / 4.5;
       height: auto;
       min-height: unset;
     }
     .pc-num { font-size: 36px; }
-    .pc-title { font-size: 18px; letter-spacing: 0.5px; margin-bottom: 6px; }
-    .pc-list li, .pc-text { font-size: 11px; line-height: 1.3; }
+    .pc-title { font-size: 20.7px; letter-spacing: 0.5px; margin-bottom: 5px; }
+    .pc-list li, .pc-text { font-size: 12.65px; line-height: 1.3; }
     .pc-body .pc-text[style*="font-size:12px"],
-    .pc-body .pc-text[style*="font-size: 12px"] { font-size: 10px !important; line-height: 1.25; }
-    .pc-list li { padding: 2px 0 2px 13px; }
+    .pc-body .pc-text[style*="font-size: 12px"] { font-size: 11.5px !important; line-height: 1.2; }
+    .pc-list li { padding: 1px 0 1px 13px; }
     .pc-list li::before { top: 8px; width: 5px; height: 5px; }
-    .pc-divider { margin-bottom: 7px; width: 28px; height: 1.5px; }
+    .pc-divider { margin-bottom: 5px; width: 28px; height: 1.5px; }
     .pc-body { padding: 10px 12px 12px; }
     .pc-header { padding: 12px 12px 0; }
     .pc-suit-corner { width: 50px; height: 50px; }
     .pc-badge { font-size: 8px; padding: 3px 8px; letter-spacing: 0.8px; }
     .poker-card--red .pc-list li, .poker-card--red .pc-text,
-    .poker-card--green .pc-list li, .poker-card--green .pc-text { font-size: 12px; line-height: 1.35; }
+    .poker-card--green .pc-list li, .poker-card--green .pc-text { font-size: 13.8px; line-height: 1.3; }
     .pc-list--soporte li {
-      font-size: 12px !important;
+      font-size: 13.8px !important;
       color: #ffe033 !important;
       text-shadow: 0 0 5px rgba(255,224,51,0.9), 0 0 12px rgba(255,224,51,0.5) !important;
-      line-height: 1.35;
+      line-height: 1.3;
     }
   }
 
@@ -3003,8 +3057,8 @@
   
   <div id="servicios-scroll-btn" style="
     display:flex; justify-content:center;
-    margin-top:0; margin-bottom:0;
-    padding-top:40px;
+    margin-top:-20px; margin-bottom:0;
+    padding-top:0;
     opacity:0;
     pointer-events:none;
     transition: opacity 0.35s ease;
@@ -3034,7 +3088,7 @@
 
 </section>
 
-<section class="metodologia" id="metodologia" style="margin-top:0; padding-top:36px;">
+<section class="metodologia" id="metodologia" style="margin-top:0; padding-top:18px;">
 
   <div class="meto-header">
     <div class="meto-overtitle">Cómo trabajo</div>
