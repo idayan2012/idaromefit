@@ -2077,7 +2077,9 @@
     .nav-social { display: none; }
     .nav-divider { display: none; }
     .nav-cta { display: none; }
-    .lang-switcher { display: none; }
+    /* Lang switcher stays visible next to hamburger */
+    .lang-switcher { display: inline-flex; }
+    .nav-right { gap: 12px !important; }
     .mobile-lang-switcher { display: flex; }
     .hamburger { display: flex; }
     .hero { padding: 96px 40px 52px; min-height: 100svh; }
@@ -2144,7 +2146,11 @@
     .nav-social { display: none; }
     .nav-divider { display: none; }
     .nav-cta { display: none; }
-    .lang-switcher { display: none; }
+    /* Lang switcher visible next to hamburger on phones */
+    .lang-switcher { display: inline-flex; }
+    .nav-right { gap: 10px !important; }
+    .nav-right .lang-switcher .lang-btn { padding: 4px 8px; font-size: 11px; }
+    .nav-right .lang-switcher .lang-btn span { display: none; }
     .nav-logo-img img { height: 40px !important; }
     .hamburger { display: flex; }
 
@@ -3281,6 +3287,13 @@
     // Tecla Escape cierra el menú
     document.addEventListener('keydown', function(e) {
       if ((e.key === 'Escape' || e.keyCode === 27) && menu.classList.contains('open')) {
+        closeMenu();
+      }
+    });
+
+    // Click en el espacio en blanco del overlay (fuera de las opciones) cierra el menú
+    menu.addEventListener('click', function(e) {
+      if (e.target === menu) {
         closeMenu();
       }
     });
