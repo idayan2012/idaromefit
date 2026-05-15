@@ -150,6 +150,59 @@
   }
   .nav-cta:hover { background: var(--verde-dark) !important; transform: translateY(-1px); }
 
+  /* ── LANGUAGE SWITCHER ── */
+  .lang-switcher {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,224,51,0.35);
+    border-radius: 999px;
+    padding: 3px;
+    gap: 2px;
+    box-shadow: 0 0 8px rgba(255,224,51,0.15);
+    flex-shrink: 0;
+  }
+  .lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    color: #f0f0f0;
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    text-transform: uppercase;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .lang-btn svg {
+    display: block;
+    border-radius: 2px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    flex-shrink: 0;
+  }
+  .lang-btn:hover {
+    background: rgba(255,224,51,0.12);
+  }
+  .lang-btn.active {
+    background: #ffe033;
+    color: #0a0a0a;
+    box-shadow: 0 0 10px rgba(255,224,51,0.6), 0 0 20px rgba(255,224,51,0.3);
+  }
+  .lang-btn.active:hover { background: #ffe033; }
+
+  .mobile-lang-switcher {
+    display: none;
+    margin-top: 28px;
+    justify-content: center;
+  }
+  .mobile-lang-switcher .lang-switcher { display: inline-flex !important; }
+
   /* ── HAMBURGER BUTTON ── */
   .hamburger {
     display: none;
@@ -2019,6 +2072,8 @@
     .nav-social { display: none; }
     .nav-divider { display: none; }
     .nav-cta { display: none; }
+    .lang-switcher { display: none; }
+    .mobile-lang-switcher { display: flex; }
     .hamburger { display: flex; }
     .hero { padding: 96px 40px 52px; min-height: 100svh; }
     .hero h1 { font-size: clamp(44px, 7vw, 80px); }
@@ -2084,6 +2139,7 @@
     .nav-social { display: none; }
     .nav-divider { display: none; }
     .nav-cta { display: none; }
+    .lang-switcher { display: none; }
     .nav-logo-img img { height: 40px !important; }
     .hamburger { display: flex; }
 
@@ -2484,10 +2540,10 @@
 <nav>
   <a href="#" class="nav-logo-img"><img alt="IDAROMEFIT logo" src="data:image/png;base64,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" alt="IDAROMEFIT" style="height:48px; width:auto; display:block;"></a>
   <ul class="nav-links">
-    <li><a href="#">Inicio</a></li>
-    <li><a href="#sobre-mi">Sobre mí</a></li>
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#metodologia">Mi método</a></li>
+    <li><a href="#" data-i18n="nav.inicio">Inicio</a></li>
+    <li><a href="#sobre-mi" data-i18n="nav.sobre">Sobre mí</a></li>
+    <li><a href="#servicios" data-i18n="nav.servicios">Servicios</a></li>
+    <li><a href="#metodologia" data-i18n="nav.metodo">Mi método</a></li>
   </ul>
 
   <div style="display:flex; align-items:center; gap:18px;">
@@ -2515,9 +2571,33 @@
       </a>
     </div>
     <div class="nav-divider"></div>
-    <a href="https://form.jotform.com/252633186626360" target="_blank" class="nav-cta" rel="noopener noreferrer">Contactar</a>
+    <div class="lang-switcher" role="group" aria-label="Language selector">
+      <button type="button" class="lang-btn active" data-lang-btn="es" aria-label="Español">
+        <svg width="18" height="13" viewBox="0 0 18 13" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="18" height="13" fill="#c60b1e"/>
+          <rect y="3.25" width="18" height="6.5" fill="#ffc400"/>
+        </svg>
+        <span>ES</span>
+      </button>
+      <button type="button" class="lang-btn" data-lang-btn="en" aria-label="English">
+        <svg width="18" height="13" viewBox="0 0 18 13" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="18" height="13" fill="#b22234"/>
+          <g fill="#ffffff">
+            <rect y="1" width="18" height="1"/>
+            <rect y="3" width="18" height="1"/>
+            <rect y="5" width="18" height="1"/>
+            <rect y="7" width="18" height="1"/>
+            <rect y="9" width="18" height="1"/>
+            <rect y="11" width="18" height="1"/>
+          </g>
+          <rect width="7.5" height="7" fill="#3c3b6e"/>
+        </svg>
+        <span>EN</span>
+      </button>
+    </div>
+    <a href="https://form.jotform.com/252633186626360" target="_blank" class="nav-cta" rel="noopener noreferrer" data-i18n="nav.cta">Contactar</a>
     
-    <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false">
+    <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false" data-i18n-aria="nav.hamburger">
       <span></span>
       <span></span>
       <span></span>
@@ -2525,12 +2605,12 @@
   </div>
 </nav>
 
-<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Menú móvil">
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Menú móvil" data-i18n-aria="nav.mobilemenu">
   <ul class="mobile-nav-links">
-    <li><a href="#" id="mobileInicio">Inicio</a></li>
-    <li><a href="#sobre-mi" class="mobile-link">Sobre mí</a></li>
-    <li><a href="#servicios" class="mobile-link">Servicios</a></li>
-    <li><a href="#metodologia" class="mobile-link">Mi método</a></li>
+    <li><a href="#" id="mobileInicio" data-i18n="nav.inicio">Inicio</a></li>
+    <li><a href="#sobre-mi" class="mobile-link" data-i18n="nav.sobre">Sobre mí</a></li>
+    <li><a href="#servicios" class="mobile-link" data-i18n="nav.servicios">Servicios</a></li>
+    <li><a href="#metodologia" class="mobile-link" data-i18n="nav.metodo">Mi método</a></li>
   </ul>
   <div class="mobile-social-bar">
     
@@ -2555,7 +2635,33 @@
       </svg>
     </a>
   </div>
-  <a href="https://form.jotform.com/252633186626360" target="_blank" class="mobile-cta" id="mobileCta" rel="noopener noreferrer">
+  <div class="mobile-lang-switcher" role="group" aria-label="Language selector">
+    <div class="lang-switcher" style="display:inline-flex;">
+      <button type="button" class="lang-btn active" data-lang-btn="es" aria-label="Español">
+        <svg width="22" height="16" viewBox="0 0 18 13" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="18" height="13" fill="#c60b1e"/>
+          <rect y="3.25" width="18" height="6.5" fill="#ffc400"/>
+        </svg>
+        <span>ESPAÑOL</span>
+      </button>
+      <button type="button" class="lang-btn" data-lang-btn="en" aria-label="English">
+        <svg width="22" height="16" viewBox="0 0 18 13" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="18" height="13" fill="#b22234"/>
+          <g fill="#ffffff">
+            <rect y="1" width="18" height="1"/>
+            <rect y="3" width="18" height="1"/>
+            <rect y="5" width="18" height="1"/>
+            <rect y="7" width="18" height="1"/>
+            <rect y="9" width="18" height="1"/>
+            <rect y="11" width="18" height="1"/>
+          </g>
+          <rect width="7.5" height="7" fill="#3c3b6e"/>
+        </svg>
+        <span>ENGLISH</span>
+      </button>
+    </div>
+  </div>
+  <a href="https://form.jotform.com/252633186626360" target="_blank" class="mobile-cta" id="mobileCta" rel="noopener noreferrer" data-i18n="mobile.cta">
     Contactar ahora
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </a>
@@ -2565,14 +2671,15 @@
 
   <img src="https://raw.githubusercontent.com/idayan2012/idaromefit/refs/heads/main/imege-hero-web.png"
        alt="IDAROMEFIT - Nutrición y Deporte"
+       data-i18n-alt="hero.imgAlt"
        style="max-width:min(760px, 90vw); width:100%; height:auto; display:block; margin-bottom:8px; mix-blend-mode:lighten;">
 
   <div class="hero-buttons" style="margin-top:36px;">
     <a href="https://form.jotform.com/252633186626360" target="_blank" class="btn-primary" rel="noopener noreferrer">
-      Empieza hoy
+      <span data-i18n="hero.btn1">Empieza hoy</span>
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
-    <a href="#servicios" class="btn-secondary">Ver servicios</a>
+    <a href="#servicios" class="btn-secondary" data-i18n="hero.btn2">Ver servicios</a>
   </div>
 
   <div class="hero-stats">
@@ -2589,7 +2696,7 @@
         <div class="spark"></div>
       </div>
       <div class="stat-num fire-effect">PLUS</div>
-      <div class="stat-label">Garantía profesional</div>
+      <div class="stat-label" data-i18n="hero.stat1">Garantía profesional</div>
     </div>
     <div class="stat-item">
       <div class="stat-flames" aria-hidden="true">
@@ -2604,7 +2711,7 @@
         <div class="spark"></div>
       </div>
       <div class="stat-num fire-effect">PLUS</div>
-      <div class="stat-label">Ejercicio y alimentación</div>
+      <div class="stat-label" data-i18n="hero.stat2">Ejercicio y alimentación</div>
     </div>
     <div class="stat-item">
       <div class="stat-flames" aria-hidden="true">
@@ -2619,7 +2726,7 @@
         <div class="spark"></div>
       </div>
       <div class="stat-num fire-effect">100%</div>
-      <div class="stat-label">Enfoque científico actualizado</div>
+      <div class="stat-label" data-i18n="hero.stat3">Enfoque científico actualizado</div>
     </div>
   </div>
 </section>
@@ -2627,19 +2734,19 @@
 <section class="sobre-mi" id="sobre-mi">
   <div class="sobre-visual">
     <div class="sobre-img-wrap">
-      <img src="https://raw.githubusercontent.com/idayan2012/idaromefit/refs/heads/main/image-sobre-m%C3%AD-web.jpg" loading="lazy" alt="Entrenador personal IDAROMEFIT" style="width:100%; height:100%; object-fit:cover; object-position:center top; display:block;">
+      <img src="https://raw.githubusercontent.com/idayan2012/idaromefit/refs/heads/main/image-sobre-m%C3%AD-web.jpg" loading="lazy" alt="Entrenador personal IDAROMEFIT" data-i18n-alt="sobre.imgAlt" style="width:100%; height:100%; object-fit:cover; object-position:center top; display:block;">
     </div>
     <div class="sobre-badge">
       <span class="badge-medal">🏅</span>
-      <span class="badge-text">MÁXIMA<br>CALIDAD DE<br>SERVICIO</span>
+      <span class="badge-text" data-i18n-html="sobre.badge">MÁXIMA<br>CALIDAD DE<br>SERVICIO</span>
     </div>
   </div>
 
   <div class="sobre-content">
-    <div class="section-tag">Sobre mí</div>
+    <div class="section-tag" data-i18n="sobre.tag">Sobre mí</div>
     
     <div class="divider-line"></div>
-    <p class="section-desc" style="max-width:100%; text-align:justify">
+    <p class="section-desc" style="max-width:100%; text-align:justify" data-i18n-html="sobre.body">
       ¡Hola! Soy Idayán, Entrenador Personal especializado en salud lumbar y Técnico Superior en Dietética. Mi propósito es ayudarte a ganar calidad de vida mediante un método individualizado que une el ejercicio físico y la nutrición para que, de una vez por todas, superes la lesión lumbar que hoy te limita.<br><br>
       Vivir con dolor de espalda condiciona cada minuto de tu día. Por eso, he centrado mi práctica en la readaptación lumbar, rompiendo con el mito del reposo absoluto. Mi enfoque profesional utiliza el movimiento inteligente como la herramienta principal de recuperación.<br><br>
       <strong>Te acompaño en un programa especialmente diseñado para:</strong><br>
@@ -2653,28 +2760,28 @@
       <div class="credencial">
         <span class="credencial-icon"><span class="neon-check"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="4,13 9,18 20,7"/></svg></span></span>
         <div class="credencial-text">
-          Entrenador Personal Certificado
-          <small>Especialista en los trastornos de la espalda baja y salud lumbar</small>
+          <span data-i18n="sobre.cred1.title">Entrenador Personal Certificado</span>
+          <small data-i18n="sobre.cred1.sub">Especialista en los trastornos de la espalda baja y salud lumbar</small>
         </div>
       </div>
       <div class="credencial">
         <span class="credencial-icon"><span class="neon-check"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="4,13 9,18 20,7"/></svg></span></span>
         <div class="credencial-text">
-          Técnico Superior en Dietética
-          <small>Alimentación antiinflamatoria y pérdida de peso</small>
+          <span data-i18n="sobre.cred2.title">Técnico Superior en Dietética</span>
+          <small data-i18n="sobre.cred2.sub">Alimentación antiinflamatoria y pérdida de peso</small>
         </div>
       </div>
       <div class="credencial">
         <span class="credencial-icon"><span class="neon-check"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="4,13 9,18 20,7"/></svg></span></span>
         <div class="credencial-text">
-          Método Basado en la Evidencia
-          <small>Profesional actualizado para que nada falle</small>
+          <span data-i18n="sobre.cred3.title">Método Basado en la Evidencia</span>
+          <small data-i18n="sobre.cred3.sub">Profesional actualizado para que nada falle</small>
         </div>
       </div>
     </div>
 
     <a href="https://form.jotform.com/252633186626360" target="_blank" class="btn-primary" style="margin-top:8px;" rel="noopener noreferrer">
-      Hablemos de tu objetivo
+      <span data-i18n="sobre.cta">Hablemos de tu objetivo</span>
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
   </div>
@@ -2684,20 +2791,20 @@
   
   <span id="servicios" style="display:block; position:relative; top:-80px; visibility:hidden;" aria-hidden="true"></span>
   <div class="servicios-header">
-    <div class="section-tag">Servicios</div>
-    <p class="section-desc servicios-desc">Mis servicios están diseñados para integrarse en tu estilo de vida, adaptándose a tu trabajo, tus horarios y cualquier deporte o actividad que ya practiques, para que puedas avanzar sin necesidad de renunciar a tu día a día.</p>
-    <h2 class="section-title big-symmetric-title" style="margin-top:16px; margin-bottom:0; text-align:center;">ESTAS SON<br>MIS CARTAS</h2>
+    <div class="section-tag" data-i18n="serv.tag">Servicios</div>
+    <p class="section-desc servicios-desc" data-i18n="serv.desc">Mis servicios están diseñados para integrarse en tu estilo de vida, adaptándose a tu trabajo, tus horarios y cualquier deporte o actividad que ya practiques, para que puedas avanzar sin necesidad de renunciar a tu día a día.</p>
+    <h2 class="section-title big-symmetric-title" style="margin-top:16px; margin-bottom:0; text-align:center;" data-i18n-html="serv.title">ESTAS SON<br>MIS CARTAS</h2>
   </div>
 
   
-  <div class="elige-opcion">ELIGE UNA OPCIÓN</div>
+  <div class="elige-opcion" data-i18n="serv.elige">ELIGE UNA OPCIÓN</div>
 
   
-  <div class="servicio-toggle" role="tablist" aria-label="Tipo de servicio">
-    <button type="button" class="toggle-btn" id="btn-presencial" role="tab" aria-selected="false" aria-controls="deck-presencial">
+  <div class="servicio-toggle" role="tablist" aria-label="Tipo de servicio" data-i18n-aria="serv.toggleAria">
+    <button type="button" class="toggle-btn" id="btn-presencial" role="tab" aria-selected="false" aria-controls="deck-presencial" data-i18n="serv.tabPresencial">
       Servicio Presencial
     </button>
-    <button type="button" class="toggle-btn" id="btn-online" role="tab" aria-selected="false" aria-controls="deck-online">
+    <button type="button" class="toggle-btn" id="btn-online" role="tab" aria-selected="false" aria-controls="deck-online" data-i18n="serv.tabOnline">
       Servicio Online
     </button>
   </div>
@@ -2728,14 +2835,14 @@
         </div>
         
         <div class="pc-body">
-          <h3 class="pc-title">Entrenamiento personal y presencial</h3>
+          <h3 class="pc-title" data-i18n="serv.p1.title">Entrenamiento personal y presencial</h3>
           <div class="pc-divider red"></div>
           <ul class="pc-list red">
-            <li>Entrenamiento personal y presencial</li>
-            <li>Readaptación lumbar</li>
-            <li>Valoración física y seguimiento</li>
-            <li>Informes y métricas del proceso</li>
-            <li>Ajustes ilimitados de ejercicios y entrenamiento</li>
+            <li data-i18n="serv.p1.li1">Entrenamiento personal y presencial</li>
+            <li data-i18n="serv.p1.li2">Readaptación lumbar</li>
+            <li data-i18n="serv.p1.li3">Valoración física y seguimiento</li>
+            <li data-i18n="serv.p1.li4">Informes y métricas del proceso</li>
+            <li data-i18n="serv.p1.li5">Ajustes ilimitados de ejercicios y entrenamiento</li>
           </ul>
         </div>
       </article>
@@ -2769,14 +2876,14 @@
           </div>
         </div>
         <div class="pc-body">
-          <h3 class="pc-title">Dieta</h3>
+          <h3 class="pc-title" data-i18n="serv.p2.title">Dieta</h3>
           <div class="pc-divider green"></div>
           <ul class="pc-list green">
-            <li>Soporte nutricional y dietético personalizado</li>
-            <li>Valoración física y antropométrica presencial</li>
-            <li>Pérdida de grasa y dieta antiinflamatoria</li>
-            <li>Asesoramiento en suplementación</li>
-            <li>Modificación dietética ilimitada</li>
+            <li data-i18n="serv.p2.li1">Soporte nutricional y dietético personalizado</li>
+            <li data-i18n="serv.p2.li2">Valoración física y antropométrica presencial</li>
+            <li data-i18n="serv.p2.li3">Pérdida de grasa y dieta antiinflamatoria</li>
+            <li data-i18n="serv.p2.li4">Asesoramiento en suplementación</li>
+            <li data-i18n="serv.p2.li5">Modificación dietética ilimitada</li>
           </ul>
         </div>
       </article>
@@ -2811,13 +2918,13 @@
           </div>
         </div>
         <div class="pc-body">
-          <h3 class="pc-title">ENTRENAMIENTO + DIETA</h3>
+          <h3 class="pc-title" data-i18n="serv.p3.title">ENTRENAMIENTO + DIETA</h3>
           <div class="pc-divider red"></div>
           <ul class="pc-list red">
-            <li>Combinación de servicios más completa</li>
-            <li>Todas las ventajas del entrenamiento, la dieta y el seguimiento</li>
-            <li>Recomposición corporal y mejora de rango de movimiento ROM</li>
-            <li>Trabajo multidisciplinar óptimo</li>
+            <li data-i18n="serv.p3.li1">Combinación de servicios más completa</li>
+            <li data-i18n="serv.p3.li2">Todas las ventajas del entrenamiento, la dieta y el seguimiento</li>
+            <li data-i18n="serv.p3.li3">Recomposición corporal y mejora de rango de movimiento ROM</li>
+            <li data-i18n="serv.p3.li4">Trabajo multidisciplinar óptimo</li>
           </ul>
         </div>
       </article>
@@ -2838,15 +2945,15 @@
           </div>
         </div>
         <div class="pc-body">
-          <h3 class="pc-title gold-neon">Soporte continuo</h3>
+          <h3 class="pc-title gold-neon" data-i18n="serv.p4.title">Soporte continuo</h3>
           <div class="pc-divider gold"></div>
           <ul class="pc-list gold pc-list--soporte">
-            <li>Comunicación directa</li>
-            <li>Resolución de dudas</li>
-            <li>Motivación durante el proceso</li>
+            <li data-i18n="serv.p4.li1">Comunicación directa</li>
+            <li data-i18n="serv.p4.li2">Resolución de dudas</li>
+            <li data-i18n="serv.p4.li3">Motivación durante el proceso</li>
           </ul>
-          <div class="pc-badge">Bonus de alto valor</div>
-          <p class="pc-text pc-text-neon" style="font-size:12px; margin-top:10px;">La parte de mayor valor del servicio. Seré esa persona de confianza que te acompañará hasta que consigas tu meta y te plantees otras mayores. Bonus incluido en los servicios 1, 2 y 3.</p>
+          <div class="pc-badge" data-i18n="serv.p4.badge">Bonus de alto valor</div>
+          <p class="pc-text pc-text-neon" style="font-size:12px; margin-top:10px;" data-i18n="serv.p4.text">La parte de mayor valor del servicio. Seré esa persona de confianza que te acompañará hasta que consigas tu meta y te plantees otras mayores. Bonus incluido en los servicios 1, 2 y 3.</p>
         </div>
       </article>
 
@@ -2873,14 +2980,14 @@
           </div>
         </div>
         <div class="pc-body">
-          <h3 class="pc-title">Guía de entrenamiento Online</h3>
+          <h3 class="pc-title" data-i18n="serv.o1.title">Guía de entrenamiento Online</h3>
           <div class="pc-divider red"></div>
           <ul class="pc-list red" style="gap:2px;">
-            <li style="padding-top:3px;padding-bottom:3px;">Entrenamiento individualizado según tu perfil</li>
-            <li style="padding-top:3px;padding-bottom:3px;">Ejercicios de readaptación lumbar</li>
-            <li style="padding-top:3px;padding-bottom:3px;">Valoración del estado físico por videollamada</li>
-            <li style="padding-top:3px;padding-bottom:3px;">Informes y métricas del proceso</li>
-            <li style="padding-top:3px;padding-bottom:3px;">Ajustes ilimitados de ejercicios y entrenamiento</li>
+            <li style="padding-top:3px;padding-bottom:3px;" data-i18n="serv.o1.li1">Entrenamiento individualizado según tu perfil</li>
+            <li style="padding-top:3px;padding-bottom:3px;" data-i18n="serv.o1.li2">Ejercicios de readaptación lumbar</li>
+            <li style="padding-top:3px;padding-bottom:3px;" data-i18n="serv.o1.li3">Valoración del estado físico por videollamada</li>
+            <li style="padding-top:3px;padding-bottom:3px;" data-i18n="serv.o1.li4">Informes y métricas del proceso</li>
+            <li style="padding-top:3px;padding-bottom:3px;" data-i18n="serv.o1.li5">Ajustes ilimitados de ejercicios y entrenamiento</li>
           </ul>
         </div>
       </article>
@@ -2914,14 +3021,14 @@
           </div>
         </div>
         <div class="pc-body">
-          <h3 class="pc-title">Dieta Online</h3>
+          <h3 class="pc-title" data-i18n="serv.o2.title">Dieta Online</h3>
           <div class="pc-divider green"></div>
           <ul class="pc-list green">
-            <li>Soporte nutricional y dietético personalizado</li>
-            <li>Envío de la dieta y lista de la compra</li>
-            <li>Pérdida de grasa y dieta antiinflamatoria</li>
-            <li>Asesoramiento en suplementación</li>
-            <li>Modificación dietética ilimitada</li>
+            <li data-i18n="serv.o2.li1">Soporte nutricional y dietético personalizado</li>
+            <li data-i18n="serv.o2.li2">Envío de la dieta y lista de la compra</li>
+            <li data-i18n="serv.o2.li3">Pérdida de grasa y dieta antiinflamatoria</li>
+            <li data-i18n="serv.o2.li4">Asesoramiento en suplementación</li>
+            <li data-i18n="serv.o2.li5">Modificación dietética ilimitada</li>
           </ul>
         </div>
       </article>
@@ -2956,13 +3063,13 @@
           </div>
         </div>
         <div class="pc-body">
-          <h3 class="pc-title">Entrenamiento Online + Dieta Online</h3>
+          <h3 class="pc-title" data-i18n="serv.o3.title">Entrenamiento Online + Dieta Online</h3>
           <div class="pc-divider red"></div>
           <ul class="pc-list red" style="gap:2px;">
-            <li style="padding-top:3px;padding-bottom:3px;">Combinación de servicios online más completos</li>
-            <li style="padding-top:3px;padding-bottom:3px;">Todas las ventajas del entrenamiento, la dieta y el seguimiento desde casa</li>
-            <li style="padding-top:3px;padding-bottom:3px;">Recomposición corporal y mejora de rango de movimiento ROM</li>
-            <li style="padding-top:3px;padding-bottom:3px;">Trabajo multidisciplinar online óptimo</li>
+            <li style="padding-top:3px;padding-bottom:3px;" data-i18n="serv.o3.li1">Combinación de servicios online más completos</li>
+            <li style="padding-top:3px;padding-bottom:3px;" data-i18n="serv.o3.li2">Todas las ventajas del entrenamiento, la dieta y el seguimiento desde casa</li>
+            <li style="padding-top:3px;padding-bottom:3px;" data-i18n="serv.o3.li3">Recomposición corporal y mejora de rango de movimiento ROM</li>
+            <li style="padding-top:3px;padding-bottom:3px;" data-i18n="serv.o3.li4">Trabajo multidisciplinar online óptimo</li>
           </ul>
         </div>
       </article>
@@ -2983,15 +3090,15 @@
           </div>
         </div>
         <div class="pc-body">
-          <h3 class="pc-title gold-neon">Soporte continuo</h3>
+          <h3 class="pc-title gold-neon" data-i18n="serv.p4.title">Soporte continuo</h3>
           <div class="pc-divider gold"></div>
           <ul class="pc-list gold pc-list--soporte">
-            <li>Comunicación directa</li>
-            <li>Resolución de dudas</li>
-            <li>Motivación durante el proceso</li>
+            <li data-i18n="serv.p4.li1">Comunicación directa</li>
+            <li data-i18n="serv.p4.li2">Resolución de dudas</li>
+            <li data-i18n="serv.p4.li3">Motivación durante el proceso</li>
           </ul>
-          <div class="pc-badge">Bonus de alto valor</div>
-          <p class="pc-text pc-text-neon" style="font-size:12px; margin-top:10px;">La parte de mayor valor del servicio. Seré esa persona de confianza que te acompañará hasta que consigas tu meta y te plantees otras mayores. Bonus incluido en los servicios 1, 2 y 3.</p>
+          <div class="pc-badge" data-i18n="serv.p4.badge">Bonus de alto valor</div>
+          <p class="pc-text pc-text-neon" style="font-size:12px; margin-top:10px;" data-i18n="serv.p4.text">La parte de mayor valor del servicio. Seré esa persona de confianza que te acompañará hasta que consigas tu meta y te plantees otras mayores. Bonus incluido en los servicios 1, 2 y 3.</p>
         </div>
       </article>
 
@@ -3011,6 +3118,7 @@
   ">
     <button onclick="document.getElementById('metodologia').scrollIntoView({behavior:'smooth'})"
       aria-label="Ir a Mi método"
+      data-i18n-aria="serv.scrollAria"
       style="
         width:64px; height:64px;
         border-radius:50%;
@@ -3037,42 +3145,42 @@
 <section class="metodologia" id="metodologia">
 
   <div class="meto-header">
-    <div class="meto-overtitle">Cómo trabajo</div>
-    <h2 class="meto-main-title big-symmetric-title">Mi método</h2>
-    <p class="meto-subtitle">Recupérate de tu lesión lumbar y alcanza tus metas sin dolor.</p>
-    <p class="meto-tagline">Este es el mapa:</p>
+    <div class="meto-overtitle" data-i18n="meto.overtitle">Cómo trabajo</div>
+    <h2 class="meto-main-title big-symmetric-title" data-i18n="meto.title">Mi método</h2>
+    <p class="meto-subtitle" data-i18n="meto.subtitle">Recupérate de tu lesión lumbar y alcanza tus metas sin dolor.</p>
+    <p class="meto-tagline" data-i18n="meto.tagline">Este es el mapa:</p>
   </div>
 
   <div class="meto-grid">
     <div class="meto-item">
       <div class="meto-num">1</div>
-      <div class="meto-step">Paso 01</div>
-      <h3>Valoración inicial personalizada</h3>
-      <p>Todo comienza con una entrevista presencial u online donde analizamos tu punto de partida, objetivos, hábitos, historial de lesiones, disponibilidad y estilo de vida. Esto me permite diseñar una estrategia realmente adaptada a ti y no una plantilla genérica.</p>
+      <div class="meto-step" data-i18n="meto.step1">Paso 01</div>
+      <h3 data-i18n="meto.t1">Valoración inicial personalizada</h3>
+      <p data-i18n="meto.p1">Todo comienza con una entrevista presencial u online donde analizamos tu punto de partida, objetivos, hábitos, historial de lesiones, disponibilidad y estilo de vida. Esto me permite diseñar una estrategia realmente adaptada a ti y no una plantilla genérica.</p>
     </div>
     <div class="meto-item">
       <div class="meto-num">2</div>
-      <div class="meto-step">Paso 02</div>
-      <h3>Evaluación física y planificación estratégica</h3>
-      <p>Realizo una evaluación completa de tu estado físico, composición corporal y capacidades para crear una programación estructurada y progresiva. Cada detalle tiene un propósito: avanzar de forma eficiente y segura.</p>
+      <div class="meto-step" data-i18n="meto.step2">Paso 02</div>
+      <h3 data-i18n="meto.t2">Evaluación física y planificación estratégica</h3>
+      <p data-i18n="meto.p2">Realizo una evaluación completa de tu estado físico, composición corporal y capacidades para crear una programación estructurada y progresiva. Cada detalle tiene un propósito: avanzar de forma eficiente y segura.</p>
     </div>
     <div class="meto-item">
       <div class="meto-num">3</div>
-      <div class="meto-step">Paso 03</div>
-      <h3>Prescripción y readaptación</h3>
-      <p>Diseño tu entrenamiento y planificación nutricional, la unión de todos los factores harán que avances mucho más rápido. Todo el proceso se adapta a tus necesidades y evoluciona contigo para que puedas mejorar tu rendimiento y superar el dolor lumbar.</p>
+      <div class="meto-step" data-i18n="meto.step3">Paso 03</div>
+      <h3 data-i18n="meto.t3">Prescripción y readaptación</h3>
+      <p data-i18n="meto.p3">Diseño tu entrenamiento y planificación nutricional, la unión de todos los factores harán que avances mucho más rápido. Todo el proceso se adapta a tus necesidades y evoluciona contigo para que puedas mejorar tu rendimiento y superar el dolor lumbar.</p>
     </div>
     <div class="meto-item">
       <div class="meto-num">4</div>
-      <div class="meto-step">Paso 04</div>
-      <h3>Seguimiento continuo y acompañamiento</h3>
-      <p>No estarás solo durante el proceso. Tendrás contacto directo conmigo tanto en las sesiones presenciales como online para resolver dudas, realizar ajustes y mantener la motivación. El seguimiento constante es clave para asegurar adherencia, progreso y confianza en cada etapa.</p>
+      <div class="meto-step" data-i18n="meto.step4">Paso 04</div>
+      <h3 data-i18n="meto.t4">Seguimiento continuo y acompañamiento</h3>
+      <p data-i18n="meto.p4">No estarás solo durante el proceso. Tendrás contacto directo conmigo tanto en las sesiones presenciales como online para resolver dudas, realizar ajustes y mantener la motivación. El seguimiento constante es clave para asegurar adherencia, progreso y confianza en cada etapa.</p>
     </div>
     <div class="meto-item">
       <div class="meto-num">5</div>
-      <div class="meto-step">Paso 05</div>
-      <h3>Resultados sostenibles y libre de dolor lumbar</h3>
-      <p>El objetivo no es solo que consigas una meta puntual, sino ayudarte a construir hábitos, mejorar tu salud y alcanzar tu mejor versión física y mental de forma sostenible en el tiempo. El miedo al movimiento, por fin, habrá quedado atrás.</p>
+      <div class="meto-step" data-i18n="meto.step5">Paso 05</div>
+      <h3 data-i18n="meto.t5">Resultados sostenibles y libre de dolor lumbar</h3>
+      <p data-i18n="meto.p5">El objetivo no es solo que consigas una meta puntual, sino ayudarte a construir hábitos, mejorar tu salud y alcanzar tu mejor versión física y mental de forma sostenible en el tiempo. El miedo al movimiento, por fin, habrá quedado atrás.</p>
     </div>
   </div>
 
@@ -3080,6 +3188,7 @@
   <div style="display:flex; justify-content:center; margin-top:32px;">
     <button onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})"
       aria-label="Ir a la siguiente sección"
+      data-i18n-aria="meto.scrollAria"
       style="
         width:64px; height:64px;
         border-radius:50%;
@@ -3104,21 +3213,21 @@
 </section>
 
 <section class="cta-final" id="contacto">
-  <div class="section-tag" style="margin-bottom:20px;">Empieza ahora</div>
-  <h2 class="section-title big-symmetric-title">¿LISTO PARA<br><span style="color:var(--verde)">TU MEJOR VERSIÓN?</span></h2>
-  <p class="section-desc"><span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);">La primera consulta y entrevista para valorar tu caso es completamente gratis.</span><br><br>Cuéntame tu objetivo y lo haremos posible.</p>
+  <div class="section-tag" style="margin-bottom:20px;" data-i18n="cta.tag">Empieza ahora</div>
+  <h2 class="section-title big-symmetric-title" data-i18n-html="cta.title">¿LISTO PARA<br><span style="color:var(--verde)">TU MEJOR VERSIÓN?</span></h2>
+  <p class="section-desc" data-i18n-html="cta.desc"><span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);">La primera consulta y entrevista para valorar tu caso es completamente gratis.</span><br><br>Cuéntame tu objetivo y lo haremos posible.</p>
 
   <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:8px; position:relative; z-index:10;">
     <a href="https://form.jotform.com/252633186626360" target="_blank" class="btn-primary" style="font-size:16px; padding:18px 40px; position:relative; z-index:10;" rel="noopener noreferrer">
-      Contactar ahora
+      <span data-i18n="cta.btn">Contactar ahora</span>
       <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
   </div>
 
-  <p style="margin-top:32px; font-size:13px; color:rgba(255,255,255,0.3); letter-spacing:1px;">
+  <p style="margin-top:32px; font-size:13px; color:rgba(255,255,255,0.3); letter-spacing:1px;" data-i18n="cta.footer1">
     WWW.IDAROMEFIT.COM · PT & TSD · READAPTADOR LUMBAR
   </p>
-  <p style="margin-top:10px; font-size:12px; color:rgba(255,255,255,0.2); letter-spacing:1px;">
+  <p style="margin-top:10px; font-size:12px; color:rgba(255,255,255,0.2); letter-spacing:1px;" data-i18n="cta.footer2">
     2026 TODOS LOS DERECHOS RESERVADOS.
   </p>
 </section>
@@ -3488,6 +3597,337 @@
         setTimeout(function () { glowFor(2000); }, 800);
       }
     });
+  })();
+</script>
+
+<script>
+  // ============================================
+  // SISTEMA DE TRADUCCIÓN ES / EN
+  // ============================================
+  (function () {
+    const translations = {
+      es: {
+        // Navegación
+        "nav.inicio": "Inicio",
+        "nav.sobre": "Sobre mí",
+        "nav.servicios": "Servicios",
+        "nav.metodo": "Mi método",
+        "nav.cta": "Contactar",
+        "nav.hamburger": "Abrir menú",
+        "nav.mobilemenu": "Menú móvil",
+        "mobile.cta": "Contactar ahora",
+
+        // Hero
+        "hero.imgAlt": "IDAROMEFIT - Nutrición y Deporte",
+        "hero.btn1": "Empieza hoy",
+        "hero.btn2": "Ver servicios",
+        "hero.stat1": "Garantía profesional",
+        "hero.stat2": "Ejercicio y alimentación",
+        "hero.stat3": "Enfoque científico actualizado",
+
+        // Sobre mí
+        "sobre.imgAlt": "Entrenador personal IDAROMEFIT",
+        "sobre.badge": "MÁXIMA<br>CALIDAD DE<br>SERVICIO",
+        "sobre.tag": "Sobre mí",
+        "sobre.body": '¡Hola! Soy Idayán, Entrenador Personal especializado en salud lumbar y Técnico Superior en Dietética. Mi propósito es ayudarte a ganar calidad de vida mediante un método individualizado que une el ejercicio físico y la nutrición para que, de una vez por todas, superes la lesión lumbar que hoy te limita.<br><br>Vivir con dolor de espalda condiciona cada minuto de tu día. Por eso, he centrado mi práctica en la readaptación lumbar, rompiendo con el mito del reposo absoluto. Mi enfoque profesional utiliza el movimiento inteligente como la herramienta principal de recuperación.<br><br><strong>Te acompaño en un programa especialmente diseñado para:</strong><br><span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);"><span style="font-size:1.4em; line-height:1;">•</span> Superar el dolor y el miedo al movimiento</span><br><span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);"><span style="font-size:1.4em; line-height:1;">•</span> Recuperar la movilidad funcional y dejar atrás la rigidez</span><br><span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);"><span style="font-size:1.4em; line-height:1;">•</span> Readaptar los ejercicios y adecuarlos a tu caso concreto sin perder rendimiento</span><br><span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);"><span style="font-size:1.4em; line-height:1;">•</span> Nutrir tu cuerpo con pautas dietéticas para un progreso más rápido</span>',
+        "sobre.cred1.title": "Entrenador Personal Certificado",
+        "sobre.cred1.sub": "Especialista en los trastornos de la espalda baja y salud lumbar",
+        "sobre.cred2.title": "Técnico Superior en Dietética",
+        "sobre.cred2.sub": "Alimentación antiinflamatoria y pérdida de peso",
+        "sobre.cred3.title": "Método Basado en la Evidencia",
+        "sobre.cred3.sub": "Profesional actualizado para que nada falle",
+        "sobre.cta": "Hablemos de tu objetivo",
+
+        // Servicios
+        "serv.tag": "Servicios",
+        "serv.desc": "Mis servicios están diseñados para integrarse en tu estilo de vida, adaptándose a tu trabajo, tus horarios y cualquier deporte o actividad que ya practiques, para que puedas avanzar sin necesidad de renunciar a tu día a día.",
+        "serv.title": "ESTAS SON<br>MIS CARTAS",
+        "serv.elige": "ELIGE UNA OPCIÓN",
+        "serv.toggleAria": "Tipo de servicio",
+        "serv.tabPresencial": "Servicio Presencial",
+        "serv.tabOnline": "Servicio Online",
+        "serv.scrollAria": "Ir a Mi método",
+
+        // Tarjeta Presencial 1
+        "serv.p1.title": "Entrenamiento personal y presencial",
+        "serv.p1.li1": "Entrenamiento personal y presencial",
+        "serv.p1.li2": "Readaptación lumbar",
+        "serv.p1.li3": "Valoración física y seguimiento",
+        "serv.p1.li4": "Informes y métricas del proceso",
+        "serv.p1.li5": "Ajustes ilimitados de ejercicios y entrenamiento",
+
+        // Tarjeta Presencial 2
+        "serv.p2.title": "Dieta",
+        "serv.p2.li1": "Soporte nutricional y dietético personalizado",
+        "serv.p2.li2": "Valoración física y antropométrica presencial",
+        "serv.p2.li3": "Pérdida de grasa y dieta antiinflamatoria",
+        "serv.p2.li4": "Asesoramiento en suplementación",
+        "serv.p2.li5": "Modificación dietética ilimitada",
+
+        // Tarjeta Presencial 3
+        "serv.p3.title": "ENTRENAMIENTO + DIETA",
+        "serv.p3.li1": "Combinación de servicios más completa",
+        "serv.p3.li2": "Todas las ventajas del entrenamiento, la dieta y el seguimiento",
+        "serv.p3.li3": "Recomposición corporal y mejora de rango de movimiento ROM",
+        "serv.p3.li4": "Trabajo multidisciplinar óptimo",
+
+        // Tarjeta 4 (Soporte continuo - igual presencial y online)
+        "serv.p4.title": "Soporte continuo",
+        "serv.p4.li1": "Comunicación directa",
+        "serv.p4.li2": "Resolución de dudas",
+        "serv.p4.li3": "Motivación durante el proceso",
+        "serv.p4.badge": "Bonus de alto valor",
+        "serv.p4.text": "La parte de mayor valor del servicio. Seré esa persona de confianza que te acompañará hasta que consigas tu meta y te plantees otras mayores. Bonus incluido en los servicios 1, 2 y 3.",
+
+        // Tarjeta Online 1
+        "serv.o1.title": "Guía de entrenamiento Online",
+        "serv.o1.li1": "Entrenamiento individualizado según tu perfil",
+        "serv.o1.li2": "Ejercicios de readaptación lumbar",
+        "serv.o1.li3": "Valoración del estado físico por videollamada",
+        "serv.o1.li4": "Informes y métricas del proceso",
+        "serv.o1.li5": "Ajustes ilimitados de ejercicios y entrenamiento",
+
+        // Tarjeta Online 2
+        "serv.o2.title": "Dieta Online",
+        "serv.o2.li1": "Soporte nutricional y dietético personalizado",
+        "serv.o2.li2": "Envío de la dieta y lista de la compra",
+        "serv.o2.li3": "Pérdida de grasa y dieta antiinflamatoria",
+        "serv.o2.li4": "Asesoramiento en suplementación",
+        "serv.o2.li5": "Modificación dietética ilimitada",
+
+        // Tarjeta Online 3
+        "serv.o3.title": "Entrenamiento Online + Dieta Online",
+        "serv.o3.li1": "Combinación de servicios online más completos",
+        "serv.o3.li2": "Todas las ventajas del entrenamiento, la dieta y el seguimiento desde casa",
+        "serv.o3.li3": "Recomposición corporal y mejora de rango de movimiento ROM",
+        "serv.o3.li4": "Trabajo multidisciplinar online óptimo",
+
+        // Metodología
+        "meto.overtitle": "Cómo trabajo",
+        "meto.title": "Mi método",
+        "meto.subtitle": "Recupérate de tu lesión lumbar y alcanza tus metas sin dolor.",
+        "meto.tagline": "Este es el mapa:",
+        "meto.step1": "Paso 01",
+        "meto.t1": "Valoración inicial personalizada",
+        "meto.p1": "Todo comienza con una entrevista presencial u online donde analizamos tu punto de partida, objetivos, hábitos, historial de lesiones, disponibilidad y estilo de vida. Esto me permite diseñar una estrategia realmente adaptada a ti y no una plantilla genérica.",
+        "meto.step2": "Paso 02",
+        "meto.t2": "Evaluación física y planificación estratégica",
+        "meto.p2": "Realizo una evaluación completa de tu estado físico, composición corporal y capacidades para crear una programación estructurada y progresiva. Cada detalle tiene un propósito: avanzar de forma eficiente y segura.",
+        "meto.step3": "Paso 03",
+        "meto.t3": "Prescripción y readaptación",
+        "meto.p3": "Diseño tu entrenamiento y planificación nutricional, la unión de todos los factores harán que avances mucho más rápido. Todo el proceso se adapta a tus necesidades y evoluciona contigo para que puedas mejorar tu rendimiento y superar el dolor lumbar.",
+        "meto.step4": "Paso 04",
+        "meto.t4": "Seguimiento continuo y acompañamiento",
+        "meto.p4": "No estarás solo durante el proceso. Tendrás contacto directo conmigo tanto en las sesiones presenciales como online para resolver dudas, realizar ajustes y mantener la motivación. El seguimiento constante es clave para asegurar adherencia, progreso y confianza en cada etapa.",
+        "meto.step5": "Paso 05",
+        "meto.t5": "Resultados sostenibles y libre de dolor lumbar",
+        "meto.p5": "El objetivo no es solo que consigas una meta puntual, sino ayudarte a construir hábitos, mejorar tu salud y alcanzar tu mejor versión física y mental de forma sostenible en el tiempo. El miedo al movimiento, por fin, habrá quedado atrás.",
+        "meto.scrollAria": "Ir a la siguiente sección",
+
+        // CTA Final
+        "cta.tag": "Empieza ahora",
+        "cta.title": '¿LISTO PARA<br><span style="color:var(--verde)">TU MEJOR VERSIÓN?</span>',
+        "cta.desc": '<span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);">La primera consulta y entrevista para valorar tu caso es completamente gratis.</span><br><br>Cuéntame tu objetivo y lo haremos posible.',
+        "cta.btn": "Contactar ahora",
+        "cta.footer1": "WWW.IDAROMEFIT.COM · PT & TSD · READAPTADOR LUMBAR",
+        "cta.footer2": "2026 TODOS LOS DERECHOS RESERVADOS."
+      },
+      en: {
+        // Navigation
+        "nav.inicio": "Home",
+        "nav.sobre": "About me",
+        "nav.servicios": "Services",
+        "nav.metodo": "My method",
+        "nav.cta": "Contact",
+        "nav.hamburger": "Open menu",
+        "nav.mobilemenu": "Mobile menu",
+        "mobile.cta": "Contact now",
+
+        // Hero
+        "hero.imgAlt": "IDAROMEFIT - Nutrition and Sports",
+        "hero.btn1": "Start today",
+        "hero.btn2": "View services",
+        "hero.stat1": "Professional guarantee",
+        "hero.stat2": "Exercise and nutrition",
+        "hero.stat3": "Up-to-date scientific approach",
+
+        // About me
+        "sobre.imgAlt": "IDAROMEFIT personal trainer",
+        "sobre.badge": "TOP<br>SERVICE<br>QUALITY",
+        "sobre.tag": "About me",
+        "sobre.body": 'Hi! I\'m Idayán, a Personal Trainer specialized in lower back health and a Higher Technician in Dietetics. My purpose is to help you gain quality of life through an individualized method that combines physical exercise and nutrition, so you can finally overcome the lower back injury that is limiting you today.<br><br>Living with back pain conditions every minute of your day. That\'s why I have focused my practice on lumbar rehabilitation, breaking with the myth of absolute rest. My professional approach uses intelligent movement as the main recovery tool.<br><br><strong>I support you in a program specifically designed to:</strong><br><span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);"><span style="font-size:1.4em; line-height:1;">•</span> Overcome pain and fear of movement</span><br><span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);"><span style="font-size:1.4em; line-height:1;">•</span> Recover functional mobility and leave stiffness behind</span><br><span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);"><span style="font-size:1.4em; line-height:1;">•</span> Adapt exercises to your specific case without losing performance</span><br><span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);"><span style="font-size:1.4em; line-height:1;">•</span> Nourish your body with dietary guidelines for faster progress</span>',
+        "sobre.cred1.title": "Certified Personal Trainer",
+        "sobre.cred1.sub": "Specialist in lower back disorders and lumbar health",
+        "sobre.cred2.title": "Higher Technician in Dietetics",
+        "sobre.cred2.sub": "Anti-inflammatory nutrition and weight loss",
+        "sobre.cred3.title": "Evidence-Based Method",
+        "sobre.cred3.sub": "Up-to-date professional so that nothing fails",
+        "sobre.cta": "Let's talk about your goal",
+
+        // Services
+        "serv.tag": "Services",
+        "serv.desc": "My services are designed to integrate into your lifestyle, adapting to your work, your schedule and any sport or activity you already practice, so you can progress without having to give up your daily routine.",
+        "serv.title": "THESE ARE<br>MY CARDS",
+        "serv.elige": "CHOOSE AN OPTION",
+        "serv.toggleAria": "Service type",
+        "serv.tabPresencial": "In-person Service",
+        "serv.tabOnline": "Online Service",
+        "serv.scrollAria": "Go to My method",
+
+        // In-person Card 1
+        "serv.p1.title": "Personal and in-person training",
+        "serv.p1.li1": "Personal and in-person training",
+        "serv.p1.li2": "Lumbar rehabilitation",
+        "serv.p1.li3": "Physical assessment and follow-up",
+        "serv.p1.li4": "Reports and process metrics",
+        "serv.p1.li5": "Unlimited exercise and training adjustments",
+
+        // In-person Card 2
+        "serv.p2.title": "Diet",
+        "serv.p2.li1": "Personalized nutritional and dietary support",
+        "serv.p2.li2": "In-person physical and anthropometric assessment",
+        "serv.p2.li3": "Fat loss and anti-inflammatory diet",
+        "serv.p2.li4": "Supplementation advice",
+        "serv.p2.li5": "Unlimited dietary modifications",
+
+        // In-person Card 3
+        "serv.p3.title": "TRAINING + DIET",
+        "serv.p3.li1": "The most complete combination of services",
+        "serv.p3.li2": "All the advantages of training, diet and follow-up",
+        "serv.p3.li3": "Body recomposition and improved ROM range of motion",
+        "serv.p3.li4": "Optimal multidisciplinary work",
+
+        // Card 4 (Continuous support - same for in-person and online)
+        "serv.p4.title": "Continuous support",
+        "serv.p4.li1": "Direct communication",
+        "serv.p4.li2": "Resolution of doubts",
+        "serv.p4.li3": "Motivation throughout the process",
+        "serv.p4.badge": "High-value bonus",
+        "serv.p4.text": "The most valuable part of the service. I will be that trusted person who will accompany you until you reach your goal and set bigger ones. Bonus included in services 1, 2 and 3.",
+
+        // Online Card 1
+        "serv.o1.title": "Online Training Guide",
+        "serv.o1.li1": "Individualized training based on your profile",
+        "serv.o1.li2": "Lumbar rehabilitation exercises",
+        "serv.o1.li3": "Physical condition assessment via video call",
+        "serv.o1.li4": "Reports and process metrics",
+        "serv.o1.li5": "Unlimited exercise and training adjustments",
+
+        // Online Card 2
+        "serv.o2.title": "Online Diet",
+        "serv.o2.li1": "Personalized nutritional and dietary support",
+        "serv.o2.li2": "Diet plan and shopping list delivery",
+        "serv.o2.li3": "Fat loss and anti-inflammatory diet",
+        "serv.o2.li4": "Supplementation advice",
+        "serv.o2.li5": "Unlimited dietary modifications",
+
+        // Online Card 3
+        "serv.o3.title": "Online Training + Online Diet",
+        "serv.o3.li1": "The most complete combination of online services",
+        "serv.o3.li2": "All the advantages of training, diet and follow-up from home",
+        "serv.o3.li3": "Body recomposition and improved ROM range of motion",
+        "serv.o3.li4": "Optimal multidisciplinary online work",
+
+        // Methodology
+        "meto.overtitle": "How I work",
+        "meto.title": "My method",
+        "meto.subtitle": "Recover from your lumbar injury and reach your goals without pain.",
+        "meto.tagline": "This is the map:",
+        "meto.step1": "Step 01",
+        "meto.t1": "Personalized initial assessment",
+        "meto.p1": "Everything starts with an in-person or online interview where we analyze your starting point, goals, habits, injury history, availability and lifestyle. This allows me to design a strategy truly adapted to you, not a generic template.",
+        "meto.step2": "Step 02",
+        "meto.t2": "Physical evaluation and strategic planning",
+        "meto.p2": "I carry out a complete evaluation of your physical condition, body composition and capabilities to create a structured and progressive program. Every detail has a purpose: to progress efficiently and safely.",
+        "meto.step3": "Step 03",
+        "meto.t3": "Prescription and rehabilitation",
+        "meto.p3": "I design your training and nutritional planning; combining all factors will make you progress much faster. The entire process adapts to your needs and evolves with you so you can improve your performance and overcome lumbar pain.",
+        "meto.step4": "Step 04",
+        "meto.t4": "Continuous follow-up and support",
+        "meto.p4": "You won't be alone during the process. You'll have direct contact with me both in in-person and online sessions to resolve doubts, make adjustments and maintain motivation. Constant follow-up is key to ensuring adherence, progress and confidence at every stage.",
+        "meto.step5": "Step 05",
+        "meto.t5": "Sustainable results and freedom from lumbar pain",
+        "meto.p5": "The goal isn't just to reach a one-time milestone, but to help you build habits, improve your health and achieve your best physical and mental version in a sustainable way over time. The fear of movement will finally be a thing of the past.",
+        "meto.scrollAria": "Go to the next section",
+
+        // Final CTA
+        "cta.tag": "Start now",
+        "cta.title": 'READY FOR<br><span style="color:var(--verde)">YOUR BEST VERSION?</span>',
+        "cta.desc": '<span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);">The first consultation and interview to assess your case is completely free.</span><br><br>Tell me your goal and we\'ll make it happen.',
+        "cta.btn": "Contact now",
+        "cta.footer1": "WWW.IDAROMEFIT.COM · PT & TSD · LUMBAR REHABILITATION",
+        "cta.footer2": "2026 ALL RIGHTS RESERVED."
+      }
+    };
+
+    function applyLang(lang) {
+      if (!translations[lang]) lang = 'es';
+      const dict = translations[lang];
+
+      // Text content
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] !== undefined) el.textContent = dict[key];
+      });
+
+      // HTML content (preserves inline tags)
+      document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+        const key = el.getAttribute('data-i18n-html');
+        if (dict[key] !== undefined) el.innerHTML = dict[key];
+      });
+
+      // aria-label attributes
+      document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+        const key = el.getAttribute('data-i18n-aria');
+        if (dict[key] !== undefined) el.setAttribute('aria-label', dict[key]);
+      });
+
+      // alt attributes
+      document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+        const key = el.getAttribute('data-i18n-alt');
+        if (dict[key] !== undefined) el.setAttribute('alt', dict[key]);
+      });
+
+      // Set lang on <html>
+      document.documentElement.setAttribute('lang', lang);
+
+      // Toggle active states on all language buttons (desktop + mobile)
+      document.querySelectorAll('.lang-btn').forEach(function (btn) {
+        if (btn.getAttribute('data-lang-btn') === lang) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Persist
+      try { localStorage.setItem('idaromefit_lang', lang); } catch (e) {}
+    }
+
+    // Wire up clicks on all language buttons
+    document.querySelectorAll('.lang-btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const lang = btn.getAttribute('data-lang-btn');
+        applyLang(lang);
+      });
+    });
+
+    // Initial language: stored > browser > es
+    let initial = 'es';
+    try {
+      const saved = localStorage.getItem('idaromefit_lang');
+      if (saved === 'es' || saved === 'en') {
+        initial = saved;
+      } else if (navigator.language && navigator.language.toLowerCase().indexOf('es') !== 0) {
+        // Default English for non-Spanish browsers; keep ES for Spanish-speaking users by default
+        // Comment the next line out if you'd rather always start in ES.
+        // initial = 'en';
+      }
+    } catch (e) {}
+
+    applyLang(initial);
   })();
 </script>
 
