@@ -2527,101 +2527,15 @@
     }
   }
 
-  /* ─── EN: cartas en inglés ≤480px — textos más largos que ES, ligeramente más pequeños ─── */
-  @media (max-width: 480px) {
+  /* ─── EN: sin guiones en ningún tamaño de móvil ─── */
+  @media (max-width: 640px) {
     html[lang="en"] .pc-title,
     html[lang="en"] .pc-list li,
     html[lang="en"] .pc-text {
       hyphens: none !important;
       -webkit-hyphens: none !important;
-      overflow-wrap: break-word;
       word-break: normal;
-    }
-    /* título EN: 16px (ES es 19) — cabe bien incluso "Anti-Inflammatory Nutrition Coaching" */
-    html[lang="en"] .pc-title {
-      font-size: 16px;
-      letter-spacing: 0;
-      line-height: 1.1;
-      margin-bottom: 4px;
-    }
-    /* ítems EN: 12px (ES es 14.5) */
-    html[lang="en"] .poker-card--red .pc-list li,
-    html[lang="en"] .poker-card--red .pc-text,
-    html[lang="en"] .poker-card--green .pc-list li,
-    html[lang="en"] .poker-card--green .pc-text {
-      font-size: 12px;
-      line-height: 1.26;
-    }
-    html[lang="en"] .pc-list { gap: 0px; }
-    html[lang="en"] .pc-list li { padding: 1.5px 0 1.5px 9px; }
-    html[lang="en"] .pc-list li::before { top: 7px; width: 3px; height: 3px; }
-    html[lang="en"] .pc-body { padding: 6px 7px 8px; }
-    html[lang="en"] .pc-header { padding: 6px 7px 0; }
-    html[lang="en"] .pc-num { font-size: 25px; }
-    html[lang="en"] .pc-suit-corner { width: 34px; height: 34px; }
-    html[lang="en"] .pc-divider { margin-bottom: 4px; width: 20px; }
-    html[lang="en"] .pc-list--soporte li {
-      font-size: 12px !important;
-      line-height: 1.26;
-    }
-    html[lang="en"] .pc-badge {
-      font-size: 7.5px;
-      padding: 3px 7px;
-      letter-spacing: 0.6px;
-    }
-    html[lang="en"] .pc-body .pc-text[style*="font-size:12px"],
-    html[lang="en"] .pc-body .pc-text[style*="font-size: 12px"] {
-      font-size: 10px !important;
-      line-height: 1.22;
-      margin-top: 5px !important;
-    }
-  }
-
-  /* ─── EN: cartas en inglés ≤380px ─── */
-  @media (max-width: 380px) {
-    html[lang="en"] .pc-title,
-    html[lang="en"] .pc-list li,
-    html[lang="en"] .pc-text {
-      hyphens: none !important;
-      -webkit-hyphens: none !important;
       overflow-wrap: break-word;
-      word-break: normal;
-    }
-    html[lang="en"] .pc-title {
-      font-size: 14px;
-      letter-spacing: 0;
-      line-height: 1.08;
-      margin-bottom: 3px;
-    }
-    html[lang="en"] .poker-card--red .pc-list li,
-    html[lang="en"] .poker-card--red .pc-text,
-    html[lang="en"] .poker-card--green .pc-list li,
-    html[lang="en"] .poker-card--green .pc-text {
-      font-size: 11px;
-      line-height: 1.25;
-    }
-    html[lang="en"] .pc-list { gap: 0px; }
-    html[lang="en"] .pc-list li { padding: 1px 0 1px 8px; }
-    html[lang="en"] .pc-list li::before { top: 6px; width: 2.5px; height: 2.5px; }
-    html[lang="en"] .pc-body { padding: 5px 6px 7px; }
-    html[lang="en"] .pc-header { padding: 5px 6px 0; }
-    html[lang="en"] .pc-num { font-size: 22px; }
-    html[lang="en"] .pc-suit-corner { width: 28px; height: 28px; }
-    html[lang="en"] .pc-divider { margin-bottom: 3px; width: 16px; }
-    html[lang="en"] .pc-list--soporte li {
-      font-size: 11px !important;
-      line-height: 1.25;
-    }
-    html[lang="en"] .pc-badge {
-      font-size: 7px;
-      padding: 2px 5px;
-      letter-spacing: 0.4px;
-    }
-    html[lang="en"] .pc-body .pc-text[style*="font-size:12px"],
-    html[lang="en"] .pc-body .pc-text[style*="font-size: 12px"] {
-      font-size: 9px !important;
-      line-height: 1.2;
-      margin-top: 4px !important;
     }
   }
 
