@@ -8,6 +8,13 @@
 <meta name="theme-color" content="#0a0a0a">
 <meta name="format-detection" content="telephone=no">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+<link rel="dns-prefetch" href="https://raw.githubusercontent.com">
+<!-- Precarga de imágenes de las cartas de metodología (evita el flash de marco negro al hacer scroll) -->
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/idayan2012/idaromefit/refs/heads/main/IMAGEN-EJEMPLO-1.png" fetchpriority="high">
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/idayan2012/idaromefit/refs/heads/main/IMAGEN-EJEMPLO-2.png" fetchpriority="high">
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/idayan2012/idaromefit/refs/heads/main/IMAGEN-EJEMPLO-3.png" fetchpriority="high">
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/idayan2012/idaromefit/refs/heads/main/IMAGEN-EJEMPLO-4.png" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -1366,6 +1373,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+  }
+
+  .meto-card-face.front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .meto-card-face.front img.is-loaded,
+  .meto-card-face.front img[data-loaded="true"] {
+    opacity: 1;
   }
 
   .meto-card-face.back {
@@ -1395,13 +1416,6 @@
     background-position: center;
     opacity: 0.35;
     filter: drop-shadow(0 0 6px rgba(57,224,102,0.5));
-  }
-
-  .meto-card-face.front img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
   }
 
   /* Caption: misma tipografía y color que .meto-tagline (sin parpadeo, sin animación) */
@@ -3391,7 +3405,7 @@
           <img src="https://raw.githubusercontent.com/idayan2012/idaromefit/refs/heads/main/IMAGEN-EJEMPLO-1.png"
                alt=""
                data-i18n-alt="meto.card1.alt"
-               loading="lazy" decoding="async">
+               loading="eager" decoding="async" fetchpriority="high">
         </div>
       </div>
       <div class="meto-card-caption" data-i18n="meto.card1.caption">ENTREVISTA A FONDO Y ESTRATEGIA PARA ABORDAR TU CASO</div>
@@ -3404,7 +3418,7 @@
           <img src="https://raw.githubusercontent.com/idayan2012/idaromefit/refs/heads/main/IMAGEN-EJEMPLO-2.png"
                alt=""
                data-i18n-alt="meto.card2.alt"
-               loading="lazy" decoding="async">
+               loading="eager" decoding="async" fetchpriority="high">
         </div>
       </div>
       <div class="meto-card-caption" data-i18n="meto.card2.caption">VALORACIÓN EXHAUSTIVA PARA SABER EN QUÉ PUNTO ESTAMOS</div>
@@ -3417,7 +3431,7 @@
           <img src="https://raw.githubusercontent.com/idayan2012/idaromefit/refs/heads/main/IMAGEN-EJEMPLO-3.png"
                alt=""
                data-i18n-alt="meto.card3.alt"
-               loading="lazy" decoding="async">
+               loading="eager" decoding="async" fetchpriority="high">
         </div>
       </div>
       <div class="meto-card-caption" data-i18n="meto.card3.caption">DATOS CUANTIFICABLES CON TUS MÉTRICAS, PLIEGUES Y PERÍMETROS</div>
@@ -3430,7 +3444,7 @@
           <img src="https://raw.githubusercontent.com/idayan2012/idaromefit/refs/heads/main/IMAGEN-EJEMPLO-4.png"
                alt=""
                data-i18n-alt="meto.card4.alt"
-               loading="lazy" decoding="async">
+               loading="eager" decoding="async" fetchpriority="high">
         </div>
       </div>
       <div class="meto-card-caption" data-i18n="meto.card4.caption">ENTRENAMIENTO BASADO EN LA ÚLTIMA EVIDENCIA PARA LA READAPTACIÓN LUMBAR</div>
@@ -4119,14 +4133,14 @@
         "meto.t5": "Sustainable Results, Free from Lower Back Pain",
         "meto.p5": "The goal isn't a one-off milestone — it's to help you build lasting habits, optimize your health, and reach your strongest physical and mental version, sustainably. The fear of movement, finally, will be behind you.",
         "meto.scrollAria": "Go to the next section",
-        "meto.card1.caption": "IN-DEPTH INTERVIEW AND STRATEGY TO ADDRESS YOUR CASE",
+        "meto.card1.caption": "IN-DEPTH INTERVIEW AND STRATEGY TO TACKLE YOUR GOALS",
         "meto.card2.caption": "THOROUGH ASSESSMENT TO PINPOINT YOUR STARTING POINT",
-        "meto.card3.caption": "QUANTIFIABLE DATA WITH YOUR METRICS, SKINFOLDS AND GIRTHS",
-        "meto.card4.caption": "EVIDENCE-BASED TRAINING FOR LUMBAR REHABILITATION",
-        "meto.card1.alt": "In-depth interview and strategy to address your case",
+        "meto.card3.caption": "QUANTIFIABLE DATA: TRACKING METRICS, SKINFOLDS, AND BODY MEASUREMENTS",
+        "meto.card4.caption": "EVIDENCE-BASED TRAINING FOR LOW BACK PAIN REHABILITATION",
+        "meto.card1.alt": "In-depth interview and strategy to tackle your goals",
         "meto.card2.alt": "Thorough assessment to pinpoint your starting point",
-        "meto.card3.alt": "Quantifiable data with your metrics, skinfolds and girths",
-        "meto.card4.alt": "Evidence-based training for lumbar rehabilitation",
+        "meto.card3.alt": "Quantifiable data: tracking metrics, skinfolds, and body measurements",
+        "meto.card4.alt": "Evidence-based training for low back pain rehabilitation",
 
         // Final CTA
         "cta.tag": "Start Now",
@@ -4222,6 +4236,18 @@
     if (!container) return;
     var cards = Array.prototype.slice.call(container.querySelectorAll('.meto-card'));
     if (!cards.length) return;
+
+    // Marcar imágenes como cargadas para que aparezcan con un fade suave
+    // (incluido el caso "cache": si ya están descargadas, el evento load no dispara)
+    var imgs = container.querySelectorAll('.meto-card-face.front img');
+    imgs.forEach(function (img) {
+      if (img.complete && img.naturalWidth > 0) {
+        img.classList.add('is-loaded');
+      } else {
+        img.addEventListener('load', function () { img.classList.add('is-loaded'); }, { once: true });
+        img.addEventListener('error', function () { img.classList.add('is-loaded'); }, { once: true });
+      }
+    });
 
     // Sin IntersectionObserver: mostrar todo
     if (!('IntersectionObserver' in window)) {
