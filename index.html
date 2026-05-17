@@ -2710,6 +2710,7 @@
   <img src="https://raw.githubusercontent.com/idayan2012/idaromefit/refs/heads/main/imege-hero-web.png"
        alt="IDAROMEFIT - Nutrición y Deporte"
        data-i18n-alt="hero.imgAlt"
+       data-i18n-src="hero.img"
        style="max-width:min(760px, 90vw); width:100%; height:auto; display:block; margin-bottom:8px; mix-blend-mode:lighten;">
 
   <div class="hero-buttons" style="margin-top:36px;">
@@ -3664,6 +3665,7 @@
 
         // Hero
         "hero.imgAlt": "IDAROMEFIT - Nutrición y Deporte",
+        "hero.img": "https://raw.githubusercontent.com/idayan2012/idaromefit/refs/heads/main/imege-hero-web.png",
         "hero.btn1": "Empieza hoy",
         "hero.btn2": "Ver servicios",
         "hero.stat1": "Garantía profesional",
@@ -3790,6 +3792,7 @@
 
         // Hero
         "hero.imgAlt": "IDAROMEFIT — Premium Personal Training & Spinal Health",
+        "hero.img": "https://raw.githubusercontent.com/idayan2012/idaromefit/refs/heads/main/imege-hero-web-ingles.png",
         "hero.btn1": "Start now",
         "hero.btn2": "Explore Services",
         "hero.stat1": "Professional guarantee",
@@ -3931,6 +3934,12 @@
       document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
         const key = el.getAttribute('data-i18n-alt');
         if (dict[key] !== undefined) el.setAttribute('alt', dict[key]);
+      });
+
+      // src attributes (images that change by language)
+      document.querySelectorAll('[data-i18n-src]').forEach(function (el) {
+        const key = el.getAttribute('data-i18n-src');
+        if (dict[key] !== undefined) el.setAttribute('src', dict[key]);
       });
 
       // Set lang on <html>
