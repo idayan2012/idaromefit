@@ -2061,6 +2061,61 @@
     .hero h1 { font-size: clamp(48px, 6vw, 72px); }
   }
 
+  /* ── IPAD 11" HORIZONTAL Y TABLETS ENTRE 1025-1280px ──
+     Compactamos la nav para que NO se solapen los enlaces con el CTA,
+     especialmente en inglés donde "Schedule an Appointment" es muy largo.
+     A esta resolución sigue saliendo la nav de escritorio (no el hamburger). */
+  @media (min-width: 1025px) and (max-width: 1280px) {
+    nav {
+      padding: 0 20px;
+      gap: 8px;
+    }
+    .nav-logo-img img { height: 40px !important; }
+    .nav-links { gap: 18px; }
+    .nav-links a {
+      font-size: 12px;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+    .nav-right { gap: 12px !important; }
+    .nav-social { gap: 10px; }
+    .nav-social a svg { width: 16px; height: 16px; }
+    .nav-divider { height: 18px; }
+    .nav-cta {
+      padding: 8px 14px;
+      font-size: 12px;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+    .lang-switcher { padding: 2px; }
+    .lang-btn {
+      font-size: 11px;
+      padding: 4px 8px;
+      letter-spacing: 0.3px;
+    }
+    .lang-btn svg { width: 14px; height: 10px; }
+  }
+
+  /* ── INGLÉS en iPad 11" horizontal: CTA aún más compacto ──
+     "Schedule an Appointment" ocupa mucho más que "Contactar".
+     Reducimos un poco más la letra del CTA y el espacio de enlaces
+     para garantizar que no haya solapamiento. */
+  @media (min-width: 1025px) and (max-width: 1280px) {
+    html[lang="en"] .nav-links { gap: 14px; }
+    html[lang="en"] .nav-links a {
+      font-size: 11.5px;
+      letter-spacing: 0.2px;
+    }
+    html[lang="en"] .nav-cta {
+      padding: 7px 11px;
+      font-size: 11px;
+      letter-spacing: 0.2px;
+    }
+    html[lang="en"] .nav-right { gap: 10px !important; }
+    html[lang="en"] .nav-social { gap: 8px; }
+    html[lang="en"] .nav-social a svg { width: 15px; height: 15px; }
+  }
+
   /* Móviles grandes (641px a 767px) */
 
   /* nav/hero en 1280px — combinado con el bloque de poker arriba */
@@ -2105,6 +2160,7 @@
     /* poker cards */
     .poker-deck {
       grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 1fr;          /* simetría: todas las cartas iguales */
       gap: 18px;
       padding: 8px 2px 12px;
       align-items: stretch;
@@ -2112,9 +2168,12 @@
     .poker-card {
       aspect-ratio: 3 / 5;
       min-height: unset;
-      height: auto;
+      height: 100%;
       align-self: stretch;
+      display: flex;
+      flex-direction: column;
     }
+    .pc-body { flex: 1 1 auto; }
     .pc-num { font-size: 48px; }
     .pc-title { font-size: 30px; letter-spacing: 1px; margin-bottom: 8px; }
     .pc-list li, .pc-text { font-size: 12px; line-height: 1.3; }
@@ -2242,15 +2301,19 @@
   @media (max-width: 640px) {
     .poker-deck {
       grid-template-columns: 1fr 1fr;
-      grid-auto-rows: auto;
+      grid-auto-rows: 1fr;          /* todas las filas iguales -> cartas simétricas */
+      align-items: stretch;
       gap: 10px;
       padding: 6px 2px 20px;
     }
     .poker-card {
       aspect-ratio: unset;
       min-height: unset;
-      height: auto;
+      height: 100%;                  /* la carta ocupa toda la altura de su celda */
+      display: flex;
+      flex-direction: column;
     }
+    .pc-body { flex: 1 1 auto; }    /* el cuerpo absorbe el espacio sobrante */
     .pc-body { overflow: visible; }
     .pc-num { font-size: 33px; }
     .pc-title {
@@ -2350,20 +2413,23 @@
       padding: 14px 20px;
       font-size: 14px;
     }
-    /* ── poker cards: altura auto, sin cortes, +30% fuente ── */
+    /* ── poker cards: cartas simétricas, sin cortes, +30% fuente ── */
     .poker-deck {
       grid-template-columns: 1fr 1fr;
-      grid-auto-rows: auto;   /* cartas crecen con su contenido */
+      grid-auto-rows: 1fr;          /* filas iguales -> cartas con misma altura */
+      align-items: stretch;
       gap: 8px;
       padding: 4px 0 16px;
     }
     .poker-card {
       aspect-ratio: unset;
       min-height: unset;
-      height: auto;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
     /* sin recorte de contenido */
-    .pc-body { overflow: visible; }
+    .pc-body { overflow: visible; flex: 1 1 auto; }
     .pc-num { font-size: 28px; }
     /* sin guiones, texto siempre visible */
     .pc-title, .pc-list li, .pc-text {
@@ -2417,16 +2483,19 @@
     .big-symmetric-title { font-size: clamp(44px, 14.5vw, 64px) !important; }
     .poker-deck {
       grid-template-columns: 1fr 1fr;
-      grid-auto-rows: auto;
+      grid-auto-rows: 1fr;          /* filas iguales -> cartas con misma altura */
+      align-items: stretch;
       gap: 6px;
       padding: 2px 0 12px;
     }
     .poker-card {
       aspect-ratio: unset;
       min-height: unset;
-      height: auto;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
-    .pc-body { overflow: visible; }
+    .pc-body { overflow: visible; flex: 1 1 auto; }
     .pc-num { font-size: 24px; }
     .pc-title {
       font-size: 17px;
@@ -2478,33 +2547,81 @@
   /* ─── ORIENTACIÓN HORIZONTAL: SOLO CARTAS ─── */
 
   /* iPhone 7 landscape (667px) y móviles similares:
-     Las cartas pasan a 2 col con altura auto para que no se corten */
+     Las cartas pasan a 2 col simétricas (todas con la misma altura) sin cortes */
   @media (orientation: landscape) and (max-width: 768px) {
     .poker-deck {
       grid-template-columns: 1fr 1fr;
-      grid-auto-rows: auto;
+      grid-auto-rows: 1fr;
+      align-items: stretch;
       gap: 10px;
       padding: 6px 2px 20px;
     }
     .poker-card {
       aspect-ratio: unset;
-      height: auto;
+      height: 100%;
       min-height: unset;
+      display: flex;
+      flex-direction: column;
+    }
+    .pc-body { flex: 1 1 auto; overflow: visible; }
+  }
+
+  /* Móviles grandes en horizontal (iPhone 16 Pro Max ~956×440):
+     ancho > 768px pero altura < 500px. Hacemos 4 columnas para
+     que las cartas no sean enormes en altura. */
+  @media (orientation: landscape) and (max-height: 500px) and (min-width: 769px) {
+    .poker-deck {
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 1fr;
+      align-items: stretch;
+      gap: 10px;
+      padding: 6px 2px 20px;
+    }
+    .poker-card {
+      aspect-ratio: unset;
+      height: 100%;
+      min-height: unset;
+      display: flex;
+      flex-direction: column;
+    }
+    .pc-body { flex: 1 1 auto; overflow: visible; }
+    .pc-num { font-size: 28px; }
+    .pc-title { font-size: 16px; letter-spacing: 0.3px; margin-bottom: 5px; }
+    .pc-list li, .pc-text { font-size: 10.5px; line-height: 1.3; }
+    .pc-list li { padding: 2px 0 2px 12px; }
+    .pc-list li::before { top: 7px; width: 4px; height: 4px; }
+    .pc-divider { margin-bottom: 6px; width: 24px; height: 1.5px; }
+    .pc-body { padding: 8px 10px 10px; }
+    .pc-header { padding: 8px 10px 0; }
+    .pc-suit-corner { width: 42px; height: 42px; }
+    .pc-badge { font-size: 8px; padding: 3px 7px; letter-spacing: 0.6px; }
+    .poker-card--red .pc-list li, .poker-card--red .pc-text,
+    .poker-card--green .pc-list li, .poker-card--green .pc-text { font-size: 11.5px; line-height: 1.3; }
+    .pc-list--soporte li {
+      font-size: 11.5px !important;
+      color: #ffe033 !important;
+      text-shadow: 0 0 5px rgba(255,224,51,0.9), 0 0 12px rgba(255,224,51,0.5) !important;
+      line-height: 1.3;
     }
   }
 
   /* iPad 11" landscape (~1194px): 4 columnas con tamaños proporcionales
-     para que las cartas no queden desproporcionadas */
+     para que las cartas no queden desproporcionadas y todas tengan la misma altura */
   @media (orientation: landscape) and (min-width: 1024px) and (max-width: 1280px) {
     .poker-deck {
       grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 1fr;
+      align-items: stretch;
       gap: 16px;
     }
     .poker-card {
       aspect-ratio: 3 / 5;
-      height: auto;
+      height: 100%;
       min-height: unset;
+      display: flex;
+      flex-direction: column;
     }
+    .pc-body { flex: 1 1 auto; }
     .pc-num { font-size: 36px; }
     .pc-title { font-size: 18px; letter-spacing: 0.5px; margin-bottom: 6px; }
     .pc-list li, .pc-text { font-size: 11px; line-height: 1.3; }
